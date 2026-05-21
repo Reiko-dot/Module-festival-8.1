@@ -6,54 +6,54 @@
 
 /* ── Theme tokens ─────────────────────────────────────── */
 :root {
-    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-family: 'Sansation', sans-serif;
 
     /* Dark (default) */
-    --body-bg: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
-               linear-gradient(180deg, #111827 0%, #0f172a 50%, #020617 100%);
-    --header-bg:        #0f111b;
-    --title-color:      #ffffff;
-    --card-bg:          rgba(255, 255, 255, 0.06);
-    --card-border:      rgba(255, 255, 255, 0.10);
-    --hero-bg:          rgba(255, 255, 255, 0.08);
-    --hero-border:      rgba(255, 255, 255, 0.12);
-    --hero-title:       #ffffff;
-    --hero-label:       #94a3b8;
-    --text-primary:     #f1f5f9;
-    --text-secondary:   #cbd5e1;
-    --text-muted:       #64748b;
-    --text-subtle:      #94a3b8;
-    --divider:          rgba(255, 255, 255, 0.08);
-    --artist-bg:        rgba(255, 255, 255, 0.05);
-    --artist-border:    rgba(255, 255, 255, 0.07);
-    --day-btn-bg:       rgba(255, 255, 255, 0.06);
-    --day-btn-border:   rgba(255, 255, 255, 0.08);
-    --day-btn-color:    #94a3b8;
-    --icon-filter:      invert(1);
+    --body-bg: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 35%),
+        linear-gradient(180deg, #111827 0%, #0f172a 50%, #020617 100%);
+    --header-bg: #0f111b;
+    --title-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.10);
+    --hero-bg: rgba(255, 255, 255, 0.08);
+    --hero-border: rgba(255, 255, 255, 0.12);
+    --hero-title: #ffffff;
+    --hero-label: #94a3b8;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    --divider: rgba(255, 255, 255, 0.08);
+    --artist-bg: rgba(255, 255, 255, 0.05);
+    --artist-border: rgba(255, 255, 255, 0.07);
+    --day-btn-bg: rgba(255, 255, 255, 0.06);
+    --day-btn-border: rgba(255, 255, 255, 0.08);
+    --day-btn-color: #94a3b8;
+    --icon-filter: invert(1);
 }
 
 html[data-theme="light"] {
-    --body-bg: radial-gradient(circle at top, rgba(240,50,40,0.06), transparent 40%),
-               linear-gradient(180deg, #f8fafc 0%, #f1f5f9 60%, #e2e8f0 100%);
-    --header-bg:        #0f111b;
-    --title-color:      #ffffff;
-    --card-bg:          #ffffff;
-    --card-border:      rgba(15, 23, 42, 0.10);
-    --hero-bg:          #ffffff;
-    --hero-border:      rgba(15, 23, 42, 0.12);
-    --hero-title:       #0f172a;
-    --hero-label:       #64748b;
-    --text-primary:     #0f172a;
-    --text-secondary:   #334155;
-    --text-muted:       #64748b;
-    --text-subtle:      #94a3b8;
-    --divider:          rgba(15, 23, 42, 0.08);
-    --artist-bg:        #f8fafc;
-    --artist-border:    rgba(15, 23, 42, 0.08);
-    --day-btn-bg:       #f1f5f9;
-    --day-btn-border:   rgba(15, 23, 42, 0.10);
-    --day-btn-color:    #475569;
-    --icon-filter:      invert(1);
+    --body-bg: radial-gradient(circle at top, rgba(240, 50, 40, 0.06), transparent 40%),
+        linear-gradient(180deg, #f8fafc 0%, #f1f5f9 60%, #e2e8f0 100%);
+    --header-bg: #0f111b;
+    --title-color: #ffffff;
+    --card-bg: #ffffff;
+    --card-border: rgba(15, 23, 42, 0.10);
+    --hero-bg: #ffffff;
+    --hero-border: rgba(15, 23, 42, 0.12);
+    --hero-title: #0f172a;
+    --hero-label: #64748b;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    --divider: rgba(15, 23, 42, 0.08);
+    --artist-bg: #f8fafc;
+    --artist-border: rgba(15, 23, 42, 0.08);
+    --day-btn-bg: #f1f5f9;
+    --day-btn-border: rgba(15, 23, 42, 0.10);
+    --day-btn-color: #475569;
+    --icon-filter: invert(1);
 }
 
 html,
@@ -65,6 +65,10 @@ body {
     min-height: 100vh;
     background: var(--body-bg);
     color: var(--text-primary);
+    font-family: 'Sansation', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
     transition: background 0.35s ease, color 0.25s ease;
     opacity: 1;
     transition: opacity 0.22s ease, background 0.35s ease, color 0.25s ease;
@@ -88,11 +92,12 @@ a {
 
 /* ── App shell ────────────────────────────────────────── */
 .app-screen {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     background: transparent;
+    overflow: hidden;
 }
 
 .app-header {
@@ -119,11 +124,11 @@ a {
 }
 
 .title-text {
-    font-family: "Sansation", sans-serif;
+    font-family: 'Sansation', sans-serif;
     color: var(--title-color);
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
 }
 
 .header-right {
@@ -163,9 +168,10 @@ a {
     position: absolute;
     bottom: -4px;
     right: -4px;
-    font-family: "Sansation", sans-serif;
-    font-size: 8px;
-    font-weight: 700;
+    font-family: 'Sansation', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    font-style: italic;
     background: #f03228;
     color: #fff;
     border-radius: 5px;
@@ -267,8 +273,10 @@ a {
 }
 
 .nav-label {
-    font-family: "Sansation", sans-serif;
-    font-size: 10px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
     color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.04em;
     margin-top: 2px;
@@ -279,9 +287,17 @@ a {
 }
 
 /* ── Page transitions ─────────────────────────────────── */
-body.page-enter       { opacity: 0; }
-body.page-enter-active{ opacity: 1; }
-body.page-exit        { opacity: 0; }
+body.page-enter {
+    opacity: 0;
+}
+
+body.page-enter-active {
+    opacity: 1;
+}
+
+body.page-exit {
+    opacity: 0;
+}
 
 /* ── Scrollable body ──────────────────────────────────── */
 .scrollable-body {
@@ -302,26 +318,31 @@ body.page-exit        { opacity: 0; }
 
 .section-label {
     display: block;
-    font-size: 12px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
     color: var(--text-subtle);
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     margin-bottom: 4px;
 }
 
 .section-title {
-    font-family: "Sansation", sans-serif;
-    font-size: 28px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 30px;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     margin-bottom: 20px;
     line-height: 1.1;
 }
 
 .content-card p {
-    font-size: 14px;
-    line-height: 1.7;
+    font-family: 'Sansation', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
@@ -341,15 +362,18 @@ body.page-exit        { opacity: 0; }
 }
 
 .info-block-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
+    font-family: 'Sansation', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.18em;
     color: var(--text-muted);
     text-transform: uppercase;
 }
 
 .info-block-value {
-    font-family: "Sansation", sans-serif;
-    font-size: 16px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text-primary);
 }
@@ -363,11 +387,12 @@ body.page-exit        { opacity: 0; }
 
 .day-btn {
     flex: 1;
-    padding: 10px 0;
+    padding: 11px 0;
     border-radius: 12px;
-    font-family: "Sansation", sans-serif;
-    font-size: 13px;
-    font-weight: 700;
+    font-family: 'Sansation', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
     letter-spacing: 0.05em;
     background: var(--day-btn-bg);
     color: var(--day-btn-color);
@@ -477,8 +502,13 @@ body.page-exit        { opacity: 0; }
     flex-shrink: 0;
 }
 
-.dot-red  { background: #f03228; }
-.dot-gray { background: #c8c8c8; }
+.dot-red {
+    background: #f03228;
+}
+
+.dot-gray {
+    background: #c8c8c8;
+}
 
 .legend-text {
     font-size: 12px;
@@ -487,7 +517,8 @@ body.page-exit        { opacity: 0; }
 }
 
 /* ── Images & icons ───────────────────────────────────── */
-img, .nav-logo {
+img,
+.nav-logo {
     width: 35px;
     height: 35px;
     object-fit: contain;
@@ -507,10 +538,23 @@ img, .nav-logo {
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 420px) {
-    .hero-card       { padding: 24px 16px; }
-    .hero-card h1    { font-size: 28px; }
-    .wireframe-body  { padding: 18px 16px 14px; gap: 14px; }
-    .bottom-nav      { padding: 12px 16px 18px; gap: 8px; }
+    .hero-card {
+        padding: 24px 16px;
+    }
+
+    .hero-card h1 {
+        font-size: 28px;
+    }
+
+    .wireframe-body {
+        padding: 18px 16px 14px;
+        gap: 14px;
+    }
+
+    .bottom-nav {
+        padding: 12px 16px 18px;
+        gap: 8px;
+    }
 }
 
 /* ── PWA install / update banner ─────────────────────── */
@@ -541,13 +585,15 @@ html[data-theme="light"] #pwa-banner {
 }
 
 #pwa-banner.pwa-banner-show {
-    bottom: 100px; /* sits above bottom-nav */
+    bottom: 100px;
+    /* sits above bottom-nav */
 }
 
 .pwa-banner-msg {
-    font-family: "Sansation", sans-serif;
-    font-size: 13px;
-    font-weight: 700;
+    font-family: 'Sansation', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
     color: var(--text-primary);
     flex: 1;
 }
@@ -564,15 +610,18 @@ html[data-theme="light"] #pwa-banner {
     border-radius: 10px;
     background: #f03228;
     color: #ffffff;
-    font-family: "Sansation", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
+    font-family: 'Sansation', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
     cursor: pointer;
     border: none;
     transition: background 0.15s ease;
 }
 
-.pwa-banner-btn:hover { background: #d92b23; }
+.pwa-banner-btn:hover {
+    background: #d92b23;
+}
 
 .pwa-banner-close {
     width: 28px;
@@ -589,4 +638,331 @@ html[data-theme="light"] #pwa-banner {
     transition: background 0.15s ease;
 }
 
-.pwa-banner-close:hover { background: rgba(255, 255, 255, 0.12); }
+.pwa-banner-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+
+/* ── Timeline variabelen ── */
+:root {
+    --slot: 60px;
+    --stage-w: 88px;
+}
+
+/* ── Hoofd layout ── */
+.schedule-outer {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0 10px;
+    min-height: 0;
+}
+
+.sched-header {
+    padding: 0 18px;
+    flex-shrink: 0;
+}
+
+.day-toggle-wrap {
+    padding: 0 18px 14px;
+    flex-shrink: 0;
+}
+
+/* ── Alleen de tijdlijn scrollt horizontaal ── */
+.timeline-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 50, 40, 0.4) transparent;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb {
+    background: rgba(240, 50, 40, 0.5);
+    border-radius: 2px;
+}
+
+.timeline-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ── Brede grid ── */
+.timeline-grid {
+    width: calc(var(--stage-w) + 56 * var(--slot));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+}
+
+/* ── Tijdlijn ruler ── */
+.time-ruler {
+    display: flex;
+    height: 34px;
+    flex-shrink: 0;
+}
+
+.time-ruler-spacer {
+    width: var(--stage-w);
+    flex-shrink: 0;
+}
+
+.time-tick {
+    width: var(--slot);
+    flex-shrink: 0;
+    font-family: 'Sansation', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    padding-top: 8px;
+    text-align: center;
+    border-left: 1px solid var(--divider);
+}
+
+/* ── Stage rijen ── */
+.stage-row {
+    display: flex;
+    flex: 1;
+    min-height: 60px;
+    border-top: 1px solid var(--divider);
+    position: relative;
+}
+
+/* Stage naam blijft plakken bij scrollen */
+.stage-label {
+    width: var(--stage-w);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-subtle);
+    letter-spacing: 0.05em;
+    background: var(--card-bg);
+    border-right: 1px solid var(--divider);
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+/* Achtergrond cellen */
+.stage-cells {
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.cell-bg {
+    width: var(--slot);
+    flex-shrink: 0;
+    border-left: 1px solid var(--divider);
+    height: 100%;
+}
+
+/* ── Artiest blokken ── */
+.perf-block {
+    position: absolute;
+    top: 8px;
+    height: calc(100% - 16px);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-family: 'Sansation', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+/* Kleuren per podium */
+.perf-block {
+    transition: filter 0.15s ease, transform 0.12s ease;
+    cursor: default;
+}
+
+.perf-block:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+.perf-block.poton {
+    background: rgba(240, 50, 40, 0.18);
+    border: 1px solid rgba(240, 50, 40, 0.35);
+    color: #fca5a5;
+}
+
+.perf-block.lake {
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+}
+
+.perf-block.club {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #c4b5fd;
+}
+
+.perf-block.hanggar {
+    background: rgba(34, 197, 94, 0.13);
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    color: #86efac;
+}
+
+html[data-theme="light"] .perf-block.poton {
+    background: rgba(240, 50, 40, 0.10);
+    color: #c0201a;
+}
+
+html[data-theme="light"] .perf-block.lake {
+    background: rgba(59, 130, 246, 0.10);
+    color: #1d4ed8;
+}
+
+html[data-theme="light"] .perf-block.club {
+    background: rgba(139, 92, 246, 0.10);
+    color: #6d28d9;
+}
+
+html[data-theme="light"] .perf-block.hanggar {
+    background: rgba(34, 197, 94, 0.10);
+    color: #15803d;
+}
+
+/* ── Info reach blocks ── */
+.info-reach-block {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--divider);
+    transition: border-color 0.35s ease;
+}
+
+.info-reach-block:last-of-type {
+    border-bottom: 1px solid var(--divider);
+}
+
+.info-reach-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.info-reach-block .info-block-label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-reach-block p {
+    margin-bottom: 0;
+    font-family: 'Sansation', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+}
+
+/* ── Shuttle time chips ── */
+.shuttle-times {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.shuttle-chip {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(240, 50, 40, 0.12);
+    border: 1px solid rgba(240, 50, 40, 0.25);
+    color: #fca5a5;
+    font-family: 'Sansation', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    padding: 5px 10px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+html[data-theme="light"] .shuttle-chip {
+    background: rgba(240, 50, 40, 0.08);
+    color: #c0201a;
+}
+
+/* ── FAQ items ── */
+.faq-item {
+    padding: 16px 0;
+    border-top: 1px solid var(--divider);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid var(--divider);
+}
+
+.faq-q {
+    font-family: 'Sansation', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+
+.faq-item p {
+    margin-bottom: 0;
+    font-family: 'Sansation', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+/* ── Golden GLU card ── */
+.golden-glu-card {
+    border-color: rgba(234, 179, 8, 0.3) !important;
+    background: rgba(234, 179, 8, 0.06) !important;
+}
+
+.golden-glu-card .section-title {
+    color: #fbbf24;
+}
+
+.golden-glu-card .info-block {
+    border-color: rgba(234, 179, 8, 0.2);
+}
+
+.golden-glu-card .info-block-value {
+    color: #fbbf24;
+}
+
+/* ── Dag schema wrapper — zelfde klasse als app.js verwacht ── */
+.day-schedule {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+.day-schedule.hidden {
+    display: none;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl" data-theme="dark" data-lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -14,7 +15,9 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
     <script>
         (function () {
             var t = localStorage.getItem('ufestival-theme') || 'dark';
@@ -25,6 +28,7 @@
         })();
     </script>
 </head>
+
 <body>
     <div class="app-screen">
         <header class="app-header">
@@ -42,64 +46,758 @@
             </div>
         </header>
 
-        <main class="wireframe-body scrollable-body">
-            <section class="wireframe-card content-card">
+        <main class="schedule-outer">
+            <div class="sched-header">
                 <span class="section-label" data-i18n="schedule.label">LINE-UP</span>
                 <h2 class="section-title" data-i18n="schedule.title">SCHEMA</h2>
+            </div>
 
+            <div class="day-toggle-wrap">
                 <div class="day-toggle">
                     <button class="day-btn active" data-day="saturday" data-i18n="schedule.saturday">Zaterdag</button>
                     <button class="day-btn" data-day="sunday" data-i18n="schedule.sunday">Zondag</button>
                 </div>
+            </div>
 
-                <!-- Saturday -->
+            <div class="timeline-scroll">
+
+                <!-- ══════════════ ZATERDAG ══════════════ -->
                 <div class="day-schedule" id="saturday">
-                    <span class="schedule-period-label" data-i18n="schedule.day">DAG</span>
-                    <div class="artist-card">
-                        <span class="artist-time">14:00</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <div class="artist-card">
-                        <span class="artist-time">16:30</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <div class="artist-card">
-                        <span class="artist-time">19:00</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <span class="schedule-period-label" data-i18n="schedule.evening">AVOND</span>
-                    <div class="artist-card">
-                        <span class="artist-time">21:00</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <div class="artist-card featured">
-                        <span class="artist-time">23:00</span>
-                        <span class="artist-name" data-i18n="schedule.headliner">HEADLINER</span>
-                    </div>
-                </div>
+                    <div class="timeline-grid">
+                        <div class="time-ruler">
+                            <div class="time-ruler-spacer"></div>
+                            <div class="time-tick">10:00</div>
+                            <div class="time-tick">10:15</div>
+                            <div class="time-tick">10:30</div>
+                            <div class="time-tick">10:45</div>
+                            <div class="time-tick">11:00</div>
+                            <div class="time-tick">11:15</div>
+                            <div class="time-tick">11:30</div>
+                            <div class="time-tick">11:45</div>
+                            <div class="time-tick">12:00</div>
+                            <div class="time-tick">12:15</div>
+                            <div class="time-tick">12:30</div>
+                            <div class="time-tick">12:45</div>
+                            <div class="time-tick">13:00</div>
+                            <div class="time-tick">13:15</div>
+                            <div class="time-tick">13:30</div>
+                            <div class="time-tick">13:45</div>
+                            <div class="time-tick">14:00</div>
+                            <div class="time-tick">14:15</div>
+                            <div class="time-tick">14:30</div>
+                            <div class="time-tick">14:45</div>
+                            <div class="time-tick">15:00</div>
+                            <div class="time-tick">15:15</div>
+                            <div class="time-tick">15:30</div>
+                            <div class="time-tick">15:45</div>
+                            <div class="time-tick">16:00</div>
+                            <div class="time-tick">16:15</div>
+                            <div class="time-tick">16:30</div>
+                            <div class="time-tick">16:45</div>
+                            <div class="time-tick">17:00</div>
+                            <div class="time-tick">17:15</div>
+                            <div class="time-tick">17:30</div>
+                            <div class="time-tick">17:45</div>
+                            <div class="time-tick">18:00</div>
+                            <div class="time-tick">18:15</div>
+                            <div class="time-tick">18:30</div>
+                            <div class="time-tick">18:45</div>
+                            <div class="time-tick">19:00</div>
+                            <div class="time-tick">19:15</div>
+                            <div class="time-tick">19:30</div>
+                            <div class="time-tick">19:45</div>
+                            <div class="time-tick">20:00</div>
+                            <div class="time-tick">20:15</div>
+                            <div class="time-tick">20:30</div>
+                            <div class="time-tick">20:45</div>
+                            <div class="time-tick">21:00</div>
+                            <div class="time-tick">21:15</div>
+                            <div class="time-tick">21:30</div>
+                            <div class="time-tick">21:45</div>
+                            <div class="time-tick">22:00</div>
+                            <div class="time-tick">22:15</div>
+                            <div class="time-tick">22:30</div>
+                            <div class="time-tick">22:45</div>
+                            <div class="time-tick">23:00</div>
+                            <div class="time-tick">23:15</div>
+                            <div class="time-tick">23:30</div>
+                            <div class="time-tick">23:45</div>
+                        </div>
 
-                <!-- Sunday -->
+                        <!-- Poton zaterdag -->
+                        <div class="stage-row">
+                            <div class="stage-label">Poton</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block poton"
+                                    style="left:calc(2*var(--slot));  width:calc(6*var(--slot))">Armin van Buuren</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(12*var(--slot)); width:calc(6*var(--slot))">Kensington</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(18*var(--slot)); width:calc(8*var(--slot))">De Staat</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(28*var(--slot)); width:calc(7*var(--slot))">Navarone</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(38*var(--slot)); width:calc(8*var(--slot))">Dotan</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(49*var(--slot)); width:calc(7*var(--slot))">Froukje</div>
+                            </div>
+                        </div>
+
+                        <!-- The Lake zaterdag -->
+                        <div class="stage-row">
+                            <div class="stage-label">The Lake</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block lake"
+                                    style="left:calc(0*var(--slot));  width:calc(4*var(--slot))">Talent set 1</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(6*var(--slot));  width:calc(6*var(--slot))">Talent set 2</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(16*var(--slot)); width:calc(6*var(--slot))">Talent set 3</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(26*var(--slot)); width:calc(4*var(--slot))">Talent set 4</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(32*var(--slot)); width:calc(6*var(--slot))">Talent set 5</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(39*var(--slot)); width:calc(7*var(--slot))">Talent set 6</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(48*var(--slot)); width:calc(6*var(--slot))">Talent set 7</div>
+                            </div>
+                        </div>
+
+                        <!-- The Club zaterdag -->
+                        <div class="stage-row">
+                            <div class="stage-label">The Club</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block club"
+                                    style="left:calc(6*var(--slot));  width:calc(6*var(--slot))">Comedy</div>
+                                <div class="perf-block club"
+                                    style="left:calc(16*var(--slot)); width:calc(6*var(--slot))">Lecture</div>
+                                <div class="perf-block club"
+                                    style="left:calc(26*var(--slot)); width:calc(6*var(--slot))">Theater</div>
+                                <div class="perf-block club"
+                                    style="left:calc(32*var(--slot)); width:calc(7*var(--slot))">Movie</div>
+                                <div class="perf-block club"
+                                    style="left:calc(41*var(--slot)); width:calc(6*var(--slot))">Performance</div>
+                                <div class="perf-block club"
+                                    style="left:calc(49*var(--slot)); width:calc(7*var(--slot))">Illusioinist</div>
+                            </div>
+                        </div>
+
+                        <!-- Hanggar zaterdag -->
+                        <div class="stage-row">
+                            <div class="stage-label">Hanggar</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(0*var(--slot));  width:calc(4*var(--slot))">DJ set 1</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(5*var(--slot));  width:calc(5*var(--slot))">DJ set 2</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(12*var(--slot)); width:calc(5*var(--slot))">DJ set 3</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(18*var(--slot)); width:calc(6*var(--slot))">DJ set 4</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(26*var(--slot)); width:calc(6*var(--slot))">DJ set 5</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(33*var(--slot)); width:calc(6*var(--slot))">DJ set 6</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(40*var(--slot)); width:calc(7*var(--slot))">DJ set 7</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(49*var(--slot)); width:calc(7*var(--slot))">DJ set 8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /saturday -->
+
+                <!-- ══════════════ ZONDAG ══════════════ -->
                 <div class="day-schedule hidden" id="sunday">
-                    <span class="schedule-period-label" data-i18n="schedule.day">DAG</span>
-                    <div class="artist-card">
-                        <span class="artist-time">13:00</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    <div class="timeline-grid">
+                        <div class="time-ruler">
+                            <div class="time-ruler-spacer"></div>
+                            <div class="time-tick">10:00</div>
+                            <div class="time-tick">10:15</div>
+                            <div class="time-tick">10:30</div>
+                            <div class="time-tick">10:45</div>
+                            <div class="time-tick">11:00</div>
+                            <div class="time-tick">11:15</div>
+                            <div class="time-tick">11:30</div>
+                            <div class="time-tick">11:45</div>
+                            <div class="time-tick">12:00</div>
+                            <div class="time-tick">12:15</div>
+                            <div class="time-tick">12:30</div>
+                            <div class="time-tick">12:45</div>
+                            <div class="time-tick">13:00</div>
+                            <div class="time-tick">13:15</div>
+                            <div class="time-tick">13:30</div>
+                            <div class="time-tick">13:45</div>
+                            <div class="time-tick">14:00</div>
+                            <div class="time-tick">14:15</div>
+                            <div class="time-tick">14:30</div>
+                            <div class="time-tick">14:45</div>
+                            <div class="time-tick">15:00</div>
+                            <div class="time-tick">15:15</div>
+                            <div class="time-tick">15:30</div>
+                            <div class="time-tick">15:45</div>
+                            <div class="time-tick">16:00</div>
+                            <div class="time-tick">16:15</div>
+                            <div class="time-tick">16:30</div>
+                            <div class="time-tick">16:45</div>
+                            <div class="time-tick">17:00</div>
+                            <div class="time-tick">17:15</div>
+                            <div class="time-tick">17:30</div>
+                            <div class="time-tick">17:45</div>
+                            <div class="time-tick">18:00</div>
+                            <div class="time-tick">18:15</div>
+                            <div class="time-tick">18:30</div>
+                            <div class="time-tick">18:45</div>
+                            <div class="time-tick">19:00</div>
+                            <div class="time-tick">19:15</div>
+                            <div class="time-tick">19:30</div>
+                            <div class="time-tick">19:45</div>
+                            <div class="time-tick">20:00</div>
+                            <div class="time-tick">20:15</div>
+                            <div class="time-tick">20:30</div>
+                            <div class="time-tick">20:45</div>
+                            <div class="time-tick">21:00</div>
+                            <div class="time-tick">21:15</div>
+                            <div class="time-tick">21:30</div>
+                            <div class="time-tick">21:45</div>
+                            <div class="time-tick">22:00</div>
+                            <div class="time-tick">22:15</div>
+                            <div class="time-tick">22:30</div>
+                            <div class="time-tick">22:45</div>
+                            <div class="time-tick">23:00</div>
+                            <div class="time-tick">23:15</div>
+                            <div class="time-tick">23:30</div>
+                            <div class="time-tick">23:45</div>
+                        </div>
+
+                        <!-- Poton zondag -->
+                        <div class="stage-row">
+                            <div class="stage-label">Poton</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block poton"
+                                    style="left:calc(3*var(--slot));  width:calc(7*var(--slot))">Martin Garrix</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(18*var(--slot)); width:calc(8*var(--slot))">Within Temptation</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(28*var(--slot)); width:calc(6*var(--slot))">Chef'Special</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(38*var(--slot)); width:calc(7*var(--slot))">Eefje de Visser</div>
+                                <div class="perf-block poton"
+                                    style="left:calc(49*var(--slot)); width:calc(7*var(--slot))">Spinvis</div>
+                            </div>
+                        </div>
+
+                        <!-- The Lake zondag -->
+                        <div class="stage-row">
+                            <div class="stage-label">The Lake</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block lake"
+                                    style="left:calc(0*var(--slot));  width:calc(4*var(--slot))">Talent set 1</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(6*var(--slot));  width:calc(6*var(--slot))">Talent set 2</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(16*var(--slot)); width:calc(6*var(--slot))">Talent set 3</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(26*var(--slot)); width:calc(4*var(--slot))">Talent set 4</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(34*var(--slot)); width:calc(6*var(--slot))">Talent set 5</div>
+                                <div class="perf-block lake"
+                                    style="left:calc(44*var(--slot)); width:calc(6*var(--slot))">Talent set 6</div>
+                            </div>
+                        </div>
+
+                        <!-- The Club zondag -->
+                        <div class="stage-row">
+                            <div class="stage-label">The Club</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block club"
+                                    style="left:calc(6*var(--slot));  width:calc(6*var(--slot))">Comedy</div>
+                                <div class="perf-block club"
+                                    style="left:calc(14*var(--slot)); width:calc(6*var(--slot))">Lecture</div>
+                                <div class="perf-block club"
+                                    style="left:calc(26*var(--slot)); width:calc(6*var(--slot))">Theater</div>
+                                <div class="perf-block club"
+                                    style="left:calc(32*var(--slot)); width:calc(6*var(--slot))">Movie</div>
+                                <div class="perf-block club"
+                                    style="left:calc(42*var(--slot)); width:calc(6*var(--slot))">Magic Show</div>
+                            </div>
+                        </div>
+
+                        <!-- Hanggar zondag -->
+                        <div class="stage-row">
+                            <div class="stage-label">Hanggar</div>
+                            <div class="stage-cells">
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="cell-bg"></div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(0*var(--slot));  width:calc(3*var(--slot))">DJ set 1</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(4*var(--slot));  width:calc(5*var(--slot))">DJ set 2</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(13*var(--slot)); width:calc(6*var(--slot))">DJ set 3</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(18*var(--slot)); width:calc(6*var(--slot))">DJ set 4</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(26*var(--slot)); width:calc(6*var(--slot))">DJ set 5</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(33*var(--slot)); width:calc(5*var(--slot))">DJ set 6</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(40*var(--slot)); width:calc(7*var(--slot))">DJ set 7</div>
+                                <div class="perf-block hanggar"
+                                    style="left:calc(48*var(--slot)); width:calc(8*var(--slot))">DJ set 8</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="artist-card">
-                        <span class="artist-time">15:30</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <span class="schedule-period-label" data-i18n="schedule.evening">AVOND</span>
-                    <div class="artist-card">
-                        <span class="artist-time">20:00</span>
-                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
-                    </div>
-                    <div class="artist-card featured">
-                        <span class="artist-time">22:30</span>
-                        <span class="artist-name" data-i18n="schedule.headliner">HEADLINER</span>
-                    </div>
-                </div>
-            </section>
+                </div><!-- /sunday -->
+
+            </div><!-- /timeline-scroll -->
         </main>
 
         <nav class="bottom-nav" aria-label="Navigatie">
@@ -123,4 +821,5 @@
     </div>
     <script src="app.js"></script>
 </body>
+
 </html>
