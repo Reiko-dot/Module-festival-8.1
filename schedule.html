@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark" data-lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>U Festival – Line-up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            var t = localStorage.getItem('ufestival-theme') || 'dark';
+            var l = localStorage.getItem('ufestival-lang') || 'nl';
+            document.documentElement.dataset.theme = t;
+            document.documentElement.dataset.lang = l;
+            document.documentElement.lang = l === 'nl' ? 'nl' : 'en';
+        })();
+    </script>
+</head>
+<body>
+    <div class="app-screen">
+        <header class="app-header">
+            <div class="header-left">
+                <img class="brand-logo" src="svg_files/logo_white.svg" alt="U Festival logo">
+                <span class="title-text">FESTIVAL</span>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Schakel lichte modus">
+                    <img src="svg_files/light_mode.svg" alt="Toggle theme">
+                </button>
+                <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
+                    <img class="flag-logo" id="flag-icon" src="svg_files/nederland_flag.svg" alt="NL">
+                </button>
+            </div>
+        </header>
+
+        <main class="wireframe-body scrollable-body">
+            <section class="wireframe-card content-card">
+                <span class="section-label" data-i18n="schedule.label">LINE-UP</span>
+                <h2 class="section-title" data-i18n="schedule.title">SCHEMA</h2>
+
+                <div class="day-toggle">
+                    <button class="day-btn active" data-day="saturday" data-i18n="schedule.saturday">Zaterdag</button>
+                    <button class="day-btn" data-day="sunday" data-i18n="schedule.sunday">Zondag</button>
+                </div>
+
+                <!-- Saturday -->
+                <div class="day-schedule" id="saturday">
+                    <span class="schedule-period-label" data-i18n="schedule.day">DAG</span>
+                    <div class="artist-card">
+                        <span class="artist-time">14:00</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <div class="artist-card">
+                        <span class="artist-time">16:30</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <div class="artist-card">
+                        <span class="artist-time">19:00</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <span class="schedule-period-label" data-i18n="schedule.evening">AVOND</span>
+                    <div class="artist-card">
+                        <span class="artist-time">21:00</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <div class="artist-card featured">
+                        <span class="artist-time">23:00</span>
+                        <span class="artist-name" data-i18n="schedule.headliner">HEADLINER</span>
+                    </div>
+                </div>
+
+                <!-- Sunday -->
+                <div class="day-schedule hidden" id="sunday">
+                    <span class="schedule-period-label" data-i18n="schedule.day">DAG</span>
+                    <div class="artist-card">
+                        <span class="artist-time">13:00</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <div class="artist-card">
+                        <span class="artist-time">15:30</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <span class="schedule-period-label" data-i18n="schedule.evening">AVOND</span>
+                    <div class="artist-card">
+                        <span class="artist-time">20:00</span>
+                        <span class="artist-name" data-i18n="schedule.artist">ARTIEST</span>
+                    </div>
+                    <div class="artist-card featured">
+                        <span class="artist-time">22:30</span>
+                        <span class="artist-name" data-i18n="schedule.headliner">HEADLINER</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav" aria-label="Navigatie">
+            <a href="index.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/home_logo.svg" alt="Home">
+                <span class="nav-label" data-i18n="nav.home">Home</span>
+            </a>
+            <a href="info.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/info_logo.svg" alt="Info">
+                <span class="nav-label" data-i18n="nav.info">Info</span>
+            </a>
+            <a href="schedule.html" class="nav-item active">
+                <img class="nav-logo" src="svg_files/music_logo.svg" alt="Line-up">
+                <span class="nav-label" data-i18n="nav.lineup">Line-up</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/map_logo.svg" alt="Kaart">
+                <span class="nav-label" data-i18n="nav.map">Kaart</span>
+            </a>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

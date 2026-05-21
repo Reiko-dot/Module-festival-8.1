@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>U Festival</title>
+    <title>U Festival – Info</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <!-- Prevent flash of wrong theme/lang -->
     <script>
         (function () {
             var t = localStorage.getItem('ufestival-theme') || 'dark';
@@ -36,21 +35,36 @@
             </div>
         </header>
 
-        <main class="wireframe-body">
-            <section class="wireframe-card hero-card">
-                <span class="hero-label" data-i18n="home.welcome">WELKOM OP HET</span>
-                <h1>U FESTIVAL</h1>
+        <main class="wireframe-body scrollable-body">
+            <section class="wireframe-card content-card">
+                <span class="section-label" data-i18n="info.label">FESTIVAL</span>
+                <h2 class="section-title" data-i18n="info.title">INFORMATIE</h2>
+
+                <p data-i18n="info.p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at euam festda ut elegent, elenendi les risus. Morbi dignissim felis et augue bibendum.</p>
+                <p data-i18n="info.p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et euavi festda ut ornare. Pellentesque habitant morbi tristique senectus et netus.</p>
+                <p data-i18n="info.p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at euam festda ut elegent, elenendi les risus nec lacinia.</p>
+
+                <div class="info-block">
+                    <span class="info-block-label" data-i18n="info.date.label">DATUM</span>
+                    <span class="info-block-value" data-i18n="info.date.value">12 – 13 juli 2025</span>
+                </div>
+                <div class="info-block">
+                    <span class="info-block-label" data-i18n="info.location.label">LOCATIE</span>
+                    <span class="info-block-value" data-i18n="info.location.value">Utrecht, Nederland</span>
+                </div>
+                <div class="info-block">
+                    <span class="info-block-label" data-i18n="info.access.label">TOEGANG</span>
+                    <span class="info-block-value" data-i18n="info.access.value">Vanaf 18:00 uur</span>
+                </div>
             </section>
-            <section class="wireframe-card empty-card"></section>
-            <section class="wireframe-card empty-card"></section>
         </main>
 
         <nav class="bottom-nav" aria-label="Navigatie">
-            <a href="index.html" class="nav-item active">
+            <a href="index.html" class="nav-item">
                 <img class="nav-logo" src="svg_files/home_logo.svg" alt="Home">
                 <span class="nav-label" data-i18n="nav.home">Home</span>
             </a>
-            <a href="info.html" class="nav-item">
+            <a href="info.html" class="nav-item active">
                 <img class="nav-logo" src="svg_files/info_logo.svg" alt="Info">
                 <span class="nav-label" data-i18n="nav.info">Info</span>
             </a>
