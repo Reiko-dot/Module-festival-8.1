@@ -966,3 +966,127 @@ html[data-theme="light"] .shuttle-chip {
 .day-schedule.hidden {
     display: none;
 }
+
+/* ── Home news section ────────────────────────────────── */
+.news-section {
+    padding: 0 4px;
+}
+
+.news-section .section-label {
+    margin-bottom: 2px;
+}
+
+.news-section .section-title {
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+/* Empty state */
+.news-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 36px 20px 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 26px;
+    gap: 8px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.news-empty-icon {
+    font-size: 36px;
+    margin-bottom: 4px;
+    opacity: 0.6;
+}
+
+.news-empty-title {
+    font-family: 'Sansation', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.news-empty-sub {
+    font-family: 'Sansation', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 260px;
+}
+
+/* News cards (gebruikt zodra er content is) */
+.news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.news-card--highlight {
+    background: rgba(240, 50, 40, 0.08);
+    border-color: rgba(240, 50, 40, 0.25);
+}
+
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.news-tag {
+    font-family: 'Sansation', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.news-tag--melding {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+    color: #fbbf24;
+}
+
+.news-tag--nieuws {
+    background: rgba(240, 50, 40, 0.15);
+    border: 1px solid rgba(240, 50, 40, 0.3);
+    color: #fca5a5;
+}
+
+html[data-theme="light"] .news-tag--melding {
+    color: #b45309;
+}
+
+html[data-theme="light"] .news-tag--nieuws {
+    color: #c0201a;
+}
+
+.news-time {
+    font-family: 'Sansation', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+.news-card-body {
+    font-family: 'Sansation', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
