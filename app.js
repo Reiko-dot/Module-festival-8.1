@@ -201,7 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ── Service Worker registration ── */
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
+        const inPages = location.pathname.includes('/pages/');
+        const swPath  = inPages ? '../sw.js' : './sw.js';
+        const swScope = inPages ? '../'      : './';
+        navigator.serviceWorker.register(swPath, { scope: swScope })
             .then(reg => {
                 console.log('[SW] Registered, scope:', reg.scope);
 
