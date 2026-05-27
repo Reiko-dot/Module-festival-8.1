@@ -1,7 +1,7 @@
 # 8.1 - Module - U Festival App - 2026
 
 
-
+'''
 MODULE-FESTIVAL-8.1/
 ├── artist-images/                 # Artist profile photos and artwork
 │
@@ -27,3 +27,4 @@ MODULE-FESTIVAL-8.1/
 ├── style.css                       # Global styling
 ├── sw.js                          # Service worker (offline functionality)
 ├── transitions.js                 # Page transition animations
+'''
