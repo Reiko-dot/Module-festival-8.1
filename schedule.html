@@ -15,9 +15,7 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <script>
         (function () {
             var t = localStorage.getItem('ufestival-theme') || 'dark';
@@ -27,6 +25,27 @@
             document.documentElement.lang = l === 'nl' ? 'nl' : 'en';
         })();
     </script>
+    <style>
+        .perf-block.has-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .perf-block.has-link::after {
+            content: ' ›';
+            opacity: 0.7;
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        .perf-block.has-link:hover,
+        .perf-block.has-link:active {
+            filter: brightness(1.2);
+        }
+    </style>
 </head>
 
 <body>
@@ -83,26 +102,25 @@
     </div>
 
     <script>
-        // ─── Schedule data ────────────────────────────────────────────────────────
-        // Each performance: { label, cls, left, width }
-        //   left / width = slot index (1 slot = 15 min, starting at 10:00)
-
+        // ─── Schedule data ─────────────────────────────────────────────────────────
+        // Artists that exist in the DB get link: 'artist.html?id=X'
+        // All other slots have no link (talent sets, DJ sets, etc.)
         const SCHEDULE = {
             saturday: [
                 {
                     stage: 'Poton', perfs: [
-                        { label: 'Armin van Buuren', cls: 'poton', left: 2, width: 6 },
-                        { label: 'Kensington', cls: 'poton', left: 12, width: 6 },
-                        { label: 'De Staat', cls: 'poton', left: 18, width: 8 },
-                        { label: 'Navarone', cls: 'poton', left: 28, width: 7 },
-                        { label: 'Dotan', cls: 'poton', left: 38, width: 8 },
-                        { label: 'Froukje', cls: 'poton', left: 49, width: 7 },
+                        { label: 'Armin van Buuren',  cls: 'poton', left: 2,  width: 6, link: 'artist.html?id=1'  },
+                        { label: 'Kensington',        cls: 'poton', left: 12, width: 6, link: 'artist.html?id=3'  },
+                        { label: 'De Staat',          cls: 'poton', left: 18, width: 8, link: 'artist.html?id=5'  },
+                        { label: 'Navarone',          cls: 'poton', left: 28, width: 7, link: 'artist.html?id=7'  },
+                        { label: 'Dotan',             cls: 'poton', left: 38, width: 8, link: 'artist.html?id=8'  },
+                        { label: 'Froukje',           cls: 'poton', left: 49, width: 7, link: 'artist.html?id=10' },
                     ]
                 },
                 {
                     stage: 'The Lake', perfs: [
-                        { label: 'Talent set 1', cls: 'lake', left: 0, width: 4 },
-                        { label: 'Talent set 2', cls: 'lake', left: 6, width: 6 },
+                        { label: 'Talent set 1', cls: 'lake', left: 0,  width: 4 },
+                        { label: 'Talent set 2', cls: 'lake', left: 6,  width: 6 },
                         { label: 'Talent set 3', cls: 'lake', left: 16, width: 6 },
                         { label: 'Talent set 4', cls: 'lake', left: 26, width: 4 },
                         { label: 'Talent set 5', cls: 'lake', left: 34, width: 6 },
@@ -112,18 +130,18 @@
                 },
                 {
                     stage: 'The Club', perfs: [
-                        { label: 'Comedy', cls: 'club', left: 6, width: 6 },
-                        { label: 'Lecture', cls: 'club', left: 16, width: 6 },
-                        { label: 'Theater', cls: 'club', left: 26, width: 6 },
-                        { label: 'Movie', cls: 'club', left: 32, width: 7 },
-                        { label: 'Performance', cls: 'club', left: 41, width: 6 },
+                        { label: 'Comedy',       cls: 'club', left: 6,  width: 6 },
+                        { label: 'Lecture',      cls: 'club', left: 16, width: 6 },
+                        { label: 'Theater',      cls: 'club', left: 26, width: 6 },
+                        { label: 'Movie',        cls: 'club', left: 32, width: 7 },
+                        { label: 'Performance',  cls: 'club', left: 41, width: 6 },
                         { label: 'Illusioinist', cls: 'club', left: 49, width: 7 },
                     ]
                 },
                 {
                     stage: 'Hanggar', perfs: [
-                        { label: 'DJ set 1', cls: 'hanggar', left: 0, width: 4 },
-                        { label: 'DJ set 2', cls: 'hanggar', left: 5, width: 5 },
+                        { label: 'DJ set 1', cls: 'hanggar', left: 0,  width: 4 },
+                        { label: 'DJ set 2', cls: 'hanggar', left: 5,  width: 5 },
                         { label: 'DJ set 3', cls: 'hanggar', left: 12, width: 5 },
                         { label: 'DJ set 4', cls: 'hanggar', left: 18, width: 6 },
                         { label: 'DJ set 5', cls: 'hanggar', left: 26, width: 6 },
@@ -136,17 +154,17 @@
             sunday: [
                 {
                     stage: 'Poton', perfs: [
-                        { label: 'Martin Garrix', cls: 'poton', left: 3, width: 7 },
-                        { label: 'Within Temptation', cls: 'poton', left: 18, width: 8 },
-                        { label: 'Chef\'Special', cls: 'poton', left: 28, width: 6 },
-                        { label: 'Eefje de Visser', cls: 'poton', left: 38, width: 7 },
-                        { label: 'Spinvis', cls: 'poton', left: 49, width: 7 },
+                        { label: 'Martin Garrix',    cls: 'poton', left: 3,  width: 7, link: 'artist.html?id=2'  },
+                        { label: 'Within Temptation',cls: 'poton', left: 18, width: 8, link: 'artist.html?id=4'  },
+                        { label: "Chef'Special",     cls: 'poton', left: 28, width: 6, link: 'artist.html?id=6'  },
+                        { label: 'Eefje de Visser',  cls: 'poton', left: 38, width: 7, link: 'artist.html?id=9'  },
+                        { label: 'Spinvis',          cls: 'poton', left: 49, width: 7, link: 'artist.html?id=11' },
                     ]
                 },
                 {
                     stage: 'The Lake', perfs: [
-                        { label: 'Talent set 1', cls: 'lake', left: 0, width: 4 },
-                        { label: 'Talent set 2', cls: 'lake', left: 6, width: 6 },
+                        { label: 'Talent set 1', cls: 'lake', left: 0,  width: 4 },
+                        { label: 'Talent set 2', cls: 'lake', left: 6,  width: 6 },
                         { label: 'Talent set 3', cls: 'lake', left: 16, width: 6 },
                         { label: 'Talent set 4', cls: 'lake', left: 26, width: 4 },
                         { label: 'Talent set 5', cls: 'lake', left: 34, width: 6 },
@@ -155,17 +173,17 @@
                 },
                 {
                     stage: 'The Club', perfs: [
-                        { label: 'Comedy', cls: 'club', left: 6, width: 6 },
-                        { label: 'Lecture', cls: 'club', left: 14, width: 6 },
-                        { label: 'Theater', cls: 'club', left: 26, width: 6 },
-                        { label: 'Movie', cls: 'club', left: 32, width: 6 },
-                        { label: 'Magic Show', cls: 'club', left: 42, width: 6 },
+                        { label: 'Comedy',    cls: 'club', left: 6,  width: 6 },
+                        { label: 'Lecture',   cls: 'club', left: 14, width: 6 },
+                        { label: 'Theater',   cls: 'club', left: 26, width: 6 },
+                        { label: 'Movie',     cls: 'club', left: 32, width: 6 },
+                        { label: 'Magic Show',cls: 'club', left: 42, width: 6 },
                     ]
                 },
                 {
                     stage: 'Hanggar', perfs: [
-                        { label: 'DJ set 1', cls: 'hanggar', left: 0, width: 3 },
-                        { label: 'DJ set 2', cls: 'hanggar', left: 4, width: 5 },
+                        { label: 'DJ set 1', cls: 'hanggar', left: 0,  width: 3 },
+                        { label: 'DJ set 2', cls: 'hanggar', left: 4,  width: 5 },
                         { label: 'DJ set 3', cls: 'hanggar', left: 13, width: 6 },
                         { label: 'DJ set 4', cls: 'hanggar', left: 18, width: 6 },
                         { label: 'DJ set 5', cls: 'hanggar', left: 26, width: 6 },
@@ -177,8 +195,8 @@
             ]
         };
 
-        // ─── Builder ──────────────────────────────────────────────────────────────
-        const SLOTS = 56;   // 10:00–23:45 in 15-min steps
+        // ─── Builder ───────────────────────────────────────────────────────────────
+        const SLOTS = 56;
         const START_HOUR = 10;
 
         function buildTimeRuler() {
@@ -207,11 +225,12 @@
             cells.innerHTML = '<div class="cell-bg"></div>'.repeat(SLOTS);
 
             for (const p of perfs) {
-                const block = document.createElement('div');
-                block.className = `perf-block ${p.cls}`;
-                block.style.cssText = `left:calc(${p.left}*var(--slot)); width:calc(${p.width}*var(--slot))`;
-                block.textContent = p.label;
-                cells.appendChild(block);
+                const el = p.link ? document.createElement('a') : document.createElement('div');
+                if (p.link) el.href = p.link;
+                el.className = `perf-block ${p.cls}${p.link ? ' has-link' : ''}`;
+                el.style.cssText = `left:calc(${p.left}*var(--slot)); width:calc(${p.width}*var(--slot))`;
+                el.textContent = p.label;
+                cells.appendChild(el);
             }
 
             row.appendChild(label);
@@ -233,10 +252,10 @@
             return wrap;
         }
 
-        // ─── Render ───────────────────────────────────────────────────────────────
+        // ─── Render ────────────────────────────────────────────────────────────────
         const container = document.getElementById('timeline-scroll');
         container.appendChild(buildDaySchedule('saturday', SCHEDULE.saturday, false));
-        container.appendChild(buildDaySchedule('sunday', SCHEDULE.sunday, true));
+        container.appendChild(buildDaySchedule('sunday',   SCHEDULE.sunday,   true));
     </script>
 
     <script src="app.js"></script>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark" data-lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>U Festival – Artiest</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f03228">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="U Festival">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            var t = localStorage.getItem('ufestival-theme') || 'dark';
+            var l = localStorage.getItem('ufestival-lang') || 'nl';
+            document.documentElement.dataset.theme = t;
+            document.documentElement.dataset.lang = l;
+            document.documentElement.lang = l === 'nl' ? 'nl' : 'en';
+        })();
+    </script>
+    <style>
+        /* ── Artist page layout ── */
+        .artist-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: var(--body-bg);
+            font-family: 'Sansation', sans-serif;
+            overflow: hidden;
+        }
+
+        /* scrollable middle zone between header and nav */
+        .artist-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ── Hero ── */
+        .artist-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            max-height: 300px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .artist-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .artist-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, var(--bg-fade, #111827) 100%);
+        }
+
+        [data-theme="light"] .artist-hero::after {
+            --bg-fade: #f8fafc;
+        }
+
+        /* back button */
+        .back-btn {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.45);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px 6px 10px;
+            color: #fff;
+            font-family: 'Sansation', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            text-decoration: none;
+        }
+
+        .back-btn svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* stage badge */
+        .hero-stage-badge {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            z-index: 5;
+            background: var(--accent, #f03228);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* ── Content ── */
+        .artist-content {
+            padding: 0 18px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .artist-name-row {
+            margin-top: -4px;
+        }
+
+        .artist-name {
+            font-size: clamp(1.7rem, 7vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-primary, #fff);
+            line-height: 1.05;
+            margin: 0 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .artist-time-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(240, 50, 40, 0.15);
+            border: 1px solid rgba(240, 50, 40, 0.4);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #f03228;
+            letter-spacing: 0.06em;
+            margin-bottom: 18px;
+        }
+
+        .artist-time-pill svg {
+            width: 13px;
+            height: 13px;
+            opacity: 0.85;
+        }
+
+        /* genre / descriptor tag */
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .genre-tag {
+            background: var(--card-bg, rgba(255,255,255,0.06));
+            border: 1px solid var(--card-border, rgba(255,255,255,0.10));
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted, #94a3b8);
+        }
+
+        /* section headings */
+        .section-heading {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #f03228;
+            margin-bottom: 8px;
+        }
+
+        /* bio */
+        .artist-bio {
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: var(--text-secondary, #cbd5e1);
+            margin-bottom: 24px;
+        }
+
+        /* divider */
+        .divider {
+            height: 1px;
+            background: var(--divider, rgba(255,255,255,0.08));
+            margin-bottom: 20px;
+        }
+
+        /* ── YouTube embed ── */
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            background: #000;
+        }
+
+        .video-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ── Fade-in animations ── */
+        .artist-content > * {
+            animation: fadeUp 0.35s ease both;
+        }
+        .artist-content > *:nth-child(1) { animation-delay: 0.05s; }
+        .artist-content > *:nth-child(2) { animation-delay: 0.10s; }
+        .artist-content > *:nth-child(3) { animation-delay: 0.15s; }
+        .artist-content > *:nth-child(4) { animation-delay: 0.20s; }
+        .artist-content > *:nth-child(5) { animation-delay: 0.25s; }
+        .artist-content > *:nth-child(6) { animation-delay: 0.30s; }
+        .artist-content > *:nth-child(7) { animation-delay: 0.35s; }
+        .artist-content > *:nth-child(8) { animation-delay: 0.40s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .artist-hero {
+            animation: heroFade 0.5s ease both;
+        }
+
+        @keyframes heroFade {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ── Not found state ── */
+        .not-found {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            gap: 12px;
+            color: var(--text-muted, #94a3b8);
+            font-size: 0.9rem;
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .not-found .nf-icon {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-screen artist-screen">
+
+        <!-- Same header as schedule.html -->
+        <header class="app-header">
+            <div class="header-left">
+                <img class="brand-logo" src="svg_files/logo_white.svg" alt="U Festival logo">
+                <span class="title-text">FESTIVAL</span>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Schakel lichte modus">
+                    <img src="svg_files/light_mode.svg" alt="Toggle theme">
+                </button>
+                <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
+                    <img class="flag-logo" id="flag-icon" src="svg_files/nederland_flag.svg" alt="NL">
+                </button>
+            </div>
+        </header>
+
+        <!-- Scrollable body -->
+        <div class="artist-body" id="artist-body">
+            <!-- Filled dynamically by JS -->
+        </div>
+
+        <!-- Bottom nav -->
+        <nav class="bottom-nav" aria-label="Navigatie">
+            <a href="index.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/home_logo.svg" alt="Home">
+                <span class="nav-label" data-i18n="nav.home">Home</span>
+            </a>
+            <a href="info.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/info_logo.svg" alt="Info">
+                <span class="nav-label" data-i18n="nav.info">Info</span>
+            </a>
+            <a href="schedule.html" class="nav-item active">
+                <img class="nav-logo" src="svg_files/music_logo.svg" alt="Line-up">
+                <span class="nav-label" data-i18n="nav.lineup">Line-up</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <img class="nav-logo" src="svg_files/map_logo.svg" alt="Kaart">
+                <span class="nav-label" data-i18n="nav.map">Kaart</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // ─── All DB data embedded from festival_artists.sql ───────────────────────
+        const ACTS = {
+            1: {
+                name: 'Armin van Buuren',
+                short_description: 'trance icon',
+                full_text: 'Five-time "World\'s No. 1 DJ" and trance icon, Armin delivers euphoric, high-energy sets that have headlined festivals from Tomorrowland to Ultra. His uplifting melodies and impeccable mixing keep crowds dancing for hours.',
+                image_url: 'artist-images/armin_van_buuren.png',
+                video_url: 'https://www.youtube.com/watch?v=TxvpctgU_s8',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '10:30 – 12:00'
+            },
+            2: {
+                name: 'Martin Garrix',
+                short_description: 'EDM superstar',
+                full_text: 'Broke through as a teenager with "Animals," Martin Garrix has become one of the biggest names in EDM. His anthemic big-room tracks and stadium-sized drops make him a festival favorite across Europe.',
+                image_url: 'artist-images/martin_garrix.png',
+                video_url: 'https://www.youtube.com/watch?v=Zv1QV6lrc_Y',
+                stage: 'Poton Stage',
+                day: 'Zondag',
+                time: '10:45 – 12:30'
+            },
+            3: {
+                name: 'Kensington',
+                short_description: 'indie rock anthems',
+                full_text: 'Rotterdam-born indie rock quintet known for soaring choruses and driving guitar riffs. Hits like "Streets" and "Riddles" showcase their knack for arena-ready hooks and emotionally charged lyricism.',
+                image_url: 'artist-images/kensington.png',
+                video_url: 'https://www.youtube.com/watch?v=IH77eOyV95o',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '13:00 – 14:30'
+            },
+            4: {
+                name: 'Within Temptation',
+                short_description: 'symphonic metal pioneers',
+                full_text: 'Symphonic metal pioneers fronted by Sharon den Adel. Their cinematic soundscapes and operatic vocals (think "Ice Queen," "Mother Earth") translate into dramatic, visually stunning festival performances.',
+                image_url: 'artist-images/within_temptation.png',
+                video_url: 'https://www.youtube.com/watch?v=iQVei5C2N4E',
+                stage: 'Poton Stage',
+                day: 'Zondag',
+                time: '14:30 – 16:30'
+            },
+            5: {
+                name: 'De Staat',
+                short_description: 'experimental rock innovators',
+                full_text: 'Experimental rock outfit from Nijmegen, blending funky grooves with angular guitar work and theatrical stagecraft. Tracks like "Witch Doctor" and "Down Town" highlight their genre-bending approach and infectious energy.',
+                image_url: 'artist-images/de_staat.png',
+                video_url: 'https://www.youtube.com/watch?v=0ttGgIQpAUc',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '14:30 – 16:30'
+            },
+            6: {
+                name: 'Chef\'Special',
+                short_description: 'genre-blending funk-pop',
+                full_text: 'A four-piece from Haarlem mixing funk, pop, rock and hip-hop. Their upbeat, genre-fluid sound on songs like "Amigo" and "In Your Arms" makes for joyous, dance-floor-friendly live shows.',
+                image_url: 'artist-images/chef_special.png',
+                video_url: 'https://www.youtube.com/watch?v=l3jRIr44lss',
+                stage: 'Poton Stage',
+                day: 'Zondag',
+                time: '17:00 – 18:30'
+            },
+            7: {
+                name: 'Navarone',
+                short_description: 'hard-hitting rock four-piece',
+                full_text: 'Utrecht\'s hard-hitting rock four-piece, delivering riff-driven anthems and dynamic vocals. With a live reputation for raw intensity, they\'re tailor-made for late-night main stages.',
+                image_url: 'artist-images/navarone.png',
+                video_url: 'https://www.youtube.com/watch?v=EvLpaCSnc4k',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '17:00 – 18:45'
+            },
+            8: {
+                name: 'Dotan',
+                short_description: 'folk-pop singer-songwriter',
+                full_text: 'Folk-pop singer-songwriter whose intimate voice and acoustic arrangements (notably on "Home") have earned him platinum sales and sell-out shows. His heartfelt storytelling connects deeply on festival acoustic stages.',
+                image_url: 'artist-images/dotan.png',
+                video_url: 'https://www.youtube.com/watch?v=FZEuqzW16Nw',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '19:30 – 21:30'
+            },
+            9: {
+                name: 'Eefje de Visser',
+                short_description: 'atmospheric indie-pop',
+                full_text: 'Indie-pop artist crafting atmospheric, electronic-tinged songs. Her hypnotic vocals and lush production (as heard on "Ongeveer") create a dreamlike vibe perfect for twilight festival slots.',
+                image_url: 'artist-images/eefje_de_visser.png',
+                video_url: 'https://www.youtube.com/watch?v=6IlLJNmLDMg',
+                stage: 'Poton Stage',
+                day: 'Zondag',
+                time: '19:30 – 21:00'
+            },
+            10: {
+                name: 'Froukje',
+                short_description: 'candid pop songwriter',
+                full_text: 'Breakthrough pop singer Froukje Veenstra combines candid lyrics with catchy, synth-driven hooks. Since her 2021 debut, she\'s become a voice of her generation—ideal for mid-day festival stages.',
+                image_url: 'artist-images/froukje.png',
+                video_url: 'https://www.youtube.com/watch?v=g4PlReX9e-E',
+                stage: 'Poton Stage',
+                day: 'Zaterdag',
+                time: '21:15 – 23:00'
+            },
+            11: {
+                name: 'Spinvis',
+                short_description: 'Poetic lo-fi surrealist in pop form',
+                full_text: 'Erik de Jong performs under the moniker Spinvis, crafting poetic, collage-like songs that blend spoken-word snippets, lo-fi electronics and wistful pop. Since his debut album in 2002—recorded in his attic—he\'s become a fixture of Dutch indie, renowned for narratives that feel both intimate and surreal. His live shows turn everyday observations into shared, dreamlike experiences.',
+                image_url: 'artist-images/spinvis.png',
+                video_url: 'https://www.youtube.com/watch?v=F3ZTrGWSLf4',
+                stage: 'Poton Stage',
+                day: 'Zondag',
+                time: '21:15 – 23:00'
+            }
+        };
+
+        // ─── Helper: YouTube watch URL → embed URL ────────────────────────────────
+        function toEmbedUrl(url) {
+            const m = url.match(/[?&]v=([^&]+)/);
+            return m ? `https://www.youtube.com/embed/${m[1]}?rel=0` : null;
+        }
+
+        // ─── Render ───────────────────────────────────────────────────────────────
+        function render() {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'));
+            const act = ACTS[id];
+            const body = document.getElementById('artist-body');
+
+            if (!act) {
+                body.innerHTML = `
+                    <div class="not-found">
+                        <span class="nf-icon">🎵</span>
+                        <strong>Artiest niet gevonden</strong>
+                        <span>Ga terug naar de <a href="schedule.html" style="color:#f03228">line-up</a>.</span>
+                    </div>`;
+                return;
+            }
+
+            // Update page title
+            document.title = `U Festival – ${act.name}`;
+
+            const embedUrl = toEmbedUrl(act.video_url);
+
+            body.innerHTML = `
+                <!-- Hero image -->
+                <div class="artist-hero">
+                    <img
+                        src="${act.image_url}"
+                        alt="${act.name}"
+                        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a0a0a 0%,#3a0c0c 50%,#f03228 100%)';"
+                    >
+                    <a href="schedule.html" class="back-btn" aria-label="Terug naar line-up">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        Line-up
+                    </a>
+                    <span class="hero-stage-badge">${act.stage}</span>
+                </div>
+
+                <!-- Content -->
+                <div class="artist-content">
+
+                    <!-- Name + time -->
+                    <div class="artist-name-row">
+                        <h1 class="artist-name">${act.name}</h1>
+                        <div class="artist-time-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            ${act.day} · ${act.time}
+                        </div>
+                    </div>
+
+                    <!-- Descriptor tag -->
+                    <div class="genre-tags">
+                        <span class="genre-tag">${act.short_description}</span>
+                    </div>
+
+                    <!-- Bio -->
+                    <p class="section-heading">Over de artiest</p>
+                    <p class="artist-bio">${act.full_text}</p>
+
+                    <div class="divider"></div>
+
+                    ${embedUrl ? `
+                    <!-- Video -->
+                    <p class="section-heading">Video</p>
+                    <div class="video-wrap">
+                        <iframe
+                            src="${embedUrl}"
+                            title="${act.name} video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    ` : ''}
+
+                </div>
+            `;
+        }
+
+        render();
+    </script>
+
+    <script src="app.js"></script>
+</body>
+</html>
