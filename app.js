@@ -143,8 +143,8 @@ function applyLang(lang) {
     const flagImg = document.getElementById('flag-icon');
     if (flagImg) {
         flagImg.src = lang === 'nl'
-            ? 'svg_files/nederland_flag.svg'
-            : 'svg_files/uk_flag.svg';
+            ? './svg_files/nederland_flag.svg'
+            : './svg_files/uk_flag.svg';
         flagImg.alt = lang === 'nl' ? 'NL' : 'EN';
     }
 }

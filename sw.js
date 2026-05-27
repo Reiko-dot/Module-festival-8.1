@@ -10,9 +10,9 @@ const OFFLINE_URL   = './index.html';
 const PRECACHE_URLS = [
     './',
     './index.html',
-    './info.html',
-    './schedule.html',
-    './map.html',
+    './pages/info.html',
+    './pages/schedule.html',
+    './pages/map.html',
     './style.css',
     './app.js',
     './manifest.json',
