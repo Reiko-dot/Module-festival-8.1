@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>U Festival – Artiest</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#f03228">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="U Festival">
-    <link rel="apple-touch-icon" href="../icons/icon-192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -279,15 +279,15 @@
         <!-- Same header as schedule.html -->
         <header class="app-header">
             <div class="header-left">
-                <img class="brand-logo" src="../svg_files/logo_white.svg" alt="U Festival logo">
+                <img class="brand-logo" src="./svg_files/logo_white.svg" alt="U Festival logo">
                 <span class="title-text">FESTIVAL</span>
             </div>
             <div class="header-right">
                 <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Schakel lichte modus">
-                    <img src="../svg_files/light_mode.svg" alt="Toggle theme">
+                    <img src="./svg_files/light_mode.svg" alt="Toggle theme">
                 </button>
                 <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
-                    <img class="flag-logo" id="flag-icon" src="../svg_files/nederland_flag.svg" alt="NL">
+                    <img class="flag-logo" id="flag-icon" src="./svg_files/nederland_flag.svg" alt="NL">
                 </button>
             </div>
         </header>
@@ -300,19 +300,19 @@
         <!-- Bottom nav -->
         <nav class="bottom-nav" aria-label="Navigatie">
             <a href="../index.html" class="nav-item">
-                <img class="nav-logo" src="../svg_files/home_logo.svg" alt="Home">
+                <img class="nav-logo" src="./svg_files/home_logo.svg" alt="Home">
                 <span class="nav-label" data-i18n="nav.home">Home</span>
             </a>
             <a href="info.html" class="nav-item">
-                <img class="nav-logo" src="../svg_files/info_logo.svg" alt="Info">
+                <img class="nav-logo" src="./svg_files/info_logo.svg" alt="Info">
                 <span class="nav-label" data-i18n="nav.info">Info</span>
             </a>
-            <a href="pages/schedule.html" class="nav-item active">
-                <img class="nav-logo" src="../svg_files/music_logo.svg" alt="Line-up">
+            <a href="schedule.html" class="nav-item active">
+                <img class="nav-logo" src="./svg_files/music_logo.svg" alt="Line-up">
                 <span class="nav-label" data-i18n="nav.lineup">Line-up</span>
             </a>
             <a href="map.html" class="nav-item">
-                <img class="nav-logo" src="../svg_files/map_logo.svg" alt="Kaart">
+                <img class="nav-logo" src="./svg_files/map_logo.svg" alt="Kaart">
                 <span class="nav-label" data-i18n="nav.map">Kaart</span>
             </a>
         </nav>
@@ -451,7 +451,7 @@
                     <div class="not-found">
                         <span class="nf-icon">🎵</span>
                         <strong>Artiest niet gevonden</strong>
-                        <span>Ga terug naar de <a href="pages/schedule.html" style="color:#f03228">line-up</a>.</span>
+                        <span>Ga terug naar de <a href="schedule.html" style="color:#f03228">line-up</a>.</span>
                     </div>`;
                 return;
             }
@@ -469,7 +469,7 @@
                         alt="${act.name}"
                         onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a0a0a 0%,#3a0c0c 50%,#f03228 100%)';"
                     >
-                    <a href="pages/schedule.html" class="back-btn" aria-label="Terug naar line-up">
+                    <a href="schedule.html" class="back-btn" aria-label="Terug naar line-up">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
@@ -525,6 +525,6 @@
         render();
     </script>
 
-    <script src="../app.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>
