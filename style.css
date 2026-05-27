@@ -58,6 +58,12 @@ html[data-theme="light"] {
 
 html,
 body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
     height: 100%;
 }
 
@@ -92,8 +98,11 @@ a {
 
 /* ── App shell ────────────────────────────────────────── */
 .app-screen {
-    height: 100vh;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     background: transparent;
@@ -101,6 +110,7 @@ a {
 }
 
 .app-header {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -189,6 +199,7 @@ a {
 /* ── Main content ─────────────────────────────────────── */
 .wireframe-body {
     flex: 1;
+    min-height: 0;
     padding: 20px 18px 16px;
     display: grid;
     gap: 18px;
@@ -239,11 +250,11 @@ a {
 
 /* ── Bottom nav ───────────────────────────────────────── */
 .bottom-nav {
-    margin-top: auto;
+    flex-shrink: 0;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
-    padding: 12px 16px 18px;
+    padding: 12px 16px calc(18px + env(safe-area-inset-bottom));
     background: #f03228;
 }
 
@@ -534,6 +545,13 @@ img,
     height: 26px;
     border-radius: 3px;
     object-fit: cover;
+}
+
+.flag-emoji {
+    font-size: 20px;
+    line-height: 1;
+    display: block;
+    user-select: none;
 }
 
 /* ── Responsive ───────────────────────────────────────── */

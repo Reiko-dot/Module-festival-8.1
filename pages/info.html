@@ -37,7 +37,7 @@
                     <img src="../svg_files/light_mode.svg" alt="Toggle theme">
                 </button>
                 <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
-                    <img class="flag-logo" id="flag-icon" src="../svg_files/nederland_flag.svg" alt="NL">
+                    <span class="flag-emoji" id="flag-icon">🇳🇱</span>
                 </button>
             </div>
         </header>
@@ -46,65 +46,65 @@
 
             <!-- ── Algemeen ── -->
             <section class="wireframe-card content-card">
-                <span class="section-label">FESTIVAL</span>
-                <h2 class="section-title">INFORMATIE</h2>
-                <p>Het ❤️U Festival is voor (nieuwe) studenten in de regio Utrecht en is een aanvulling op UIT.</p>
+                <span class="section-label" data-trans="s1.label">FESTIVAL</span>
+                <h2 class="section-title" data-trans="s1.title">INFORMATIE</h2>
+                <p data-trans="s1.intro">Het ❤️U Festival is voor (nieuwe) studenten in de regio Utrecht en is een aanvulling op UIT.</p>
 
                 <div class="info-block">
-                    <span class="info-block-label">DATUM</span>
-                    <span class="info-block-value">Zaterdag 5 september 2026</span>
+                    <span class="info-block-label" data-trans="s1.datum.lbl">DATUM</span>
+                    <span class="info-block-value" data-trans="s1.datum.val">Zaterdag 5 september 2026</span>
                 </div>
                 <div class="info-block">
-                    <span class="info-block-label">OPENINGSTIJDEN</span>
-                    <span class="info-block-value">12:00 – 23:00 uur</span>
+                    <span class="info-block-label" data-trans="s1.hours.lbl">OPENINGSTIJDEN</span>
+                    <span class="info-block-value" data-trans="s1.hours.val">12:00 – 23:00 uur</span>
                 </div>
                 <div class="info-block">
-                    <span class="info-block-label">LOCATIE</span>
-                    <span class="info-block-value">Strijkviertel, Utrecht</span>
+                    <span class="info-block-label" data-trans="s1.loc.lbl">LOCATIE</span>
+                    <span class="info-block-value" data-trans="s1.loc.val">Strijkviertel, Utrecht</span>
                 </div>
                 <div class="info-block">
-                    <span class="info-block-label">NAVIGATIEADRES</span>
-                    <span class="info-block-value">Strijkviertelweg, Utrecht</span>
+                    <span class="info-block-label" data-trans="s1.nav.lbl">NAVIGATIEADRES</span>
+                    <span class="info-block-value" data-trans="s1.nav.val">Strijkviertelweg, Utrecht</span>
                 </div>
             </section>
 
             <!-- ── Bereikbaarheid ── -->
             <section class="wireframe-card content-card" style="margin-top: 14px;">
-                <span class="section-label">HOE KOM JE ER</span>
-                <h2 class="section-title">BEREIKBAARHEID</h2>
+                <span class="section-label" data-trans="s2.label">HOE KOM JE ER</span>
+                <h2 class="section-title" data-trans="s2.title">BEREIKBAARHEID</h2>
 
                 <div class="info-reach-block">
                     <div class="info-reach-icon">🚲</div>
                     <div>
-                        <span class="info-block-label">FIETS</span>
-                        <p>Er is een grote gratis fietsenstalling aanwezig waar je jouw fiets de gehele dag kunt stallen.</p>
+                        <span class="info-block-label" data-trans="s2.bike.lbl">FIETS</span>
+                        <p data-trans="s2.bike.txt">Er is een grote gratis fietsenstalling aanwezig waar je jouw fiets de gehele dag kunt stallen.</p>
                     </div>
                 </div>
 
                 <div class="info-reach-block">
                     <div class="info-reach-icon">🚗</div>
                     <div>
-                        <span class="info-block-label">AUTO</span>
-                        <p>Parkeren op P+R Papendorp. Koop je ticket van tevoren — volg de borden 'P online ticket'. Geen ticket? Kopen bij de parkeerwachter op locatie (PIN ONLY). Let op: <strong>VOL = VOL</strong></p>
+                        <span class="info-block-label" data-trans="s2.car.lbl">AUTO</span>
+                        <p data-trans-html="s2.car.txt">Parkeren op P+R Papendorp. Koop je ticket van tevoren — volg de borden 'P online ticket'. Geen ticket? Kopen bij de parkeerwachter op locatie (PIN ONLY). Let op: <strong>VOL = VOL</strong></p>
                     </div>
                 </div>
 
                 <div class="info-reach-block">
                     <div class="info-reach-icon">🚌</div>
                     <div>
-                        <span class="info-block-label">OPENBAAR VERVOER</span>
-                        <p>Reis plannen via <strong>9292.nl</strong></p>
+                        <span class="info-block-label" data-trans="s2.ov.lbl">OPENBAAR VERVOER</span>
+                        <p data-trans-html="s2.ov.txt">Reis plannen via <strong>9292.nl</strong></p>
                     </div>
                 </div>
 
                 <div class="info-reach-block">
                     <div class="info-reach-icon">🚐</div>
                     <div>
-                        <span class="info-block-label">GRATIS SHUTTLEBUS</span>
-                        <p>Vanaf Utrecht Centraal (Mineurslaan). Volg de witte bordjes met zwarte pijlen én '❤️U Festival'.</p>
+                        <span class="info-block-label" data-trans="s2.shuttle.lbl">GRATIS SHUTTLEBUS</span>
+                        <p data-trans="s2.shuttle.txt">Vanaf Utrecht Centraal (Mineurslaan). Volg de witte bordjes met zwarte pijlen én '❤️U Festival'.</p>
                         <div class="shuttle-times">
-                            <div class="shuttle-chip">▶ Richting festival: 12:00 – 19:00</div>
-                            <div class="shuttle-chip">◀ Terug naar station: vanaf 21:00</div>
+                            <div class="shuttle-chip" data-trans="s2.shuttle.to">▶ Richting festival: 12:00 – 19:00</div>
+                            <div class="shuttle-chip" data-trans="s2.shuttle.back">◀ Terug naar station: vanaf 21:00</div>
                         </div>
                     </div>
                 </div>
@@ -112,51 +112,51 @@
                 <div class="info-reach-block" style="border-bottom: none;">
                     <div class="info-reach-icon">🚕</div>
                     <div>
-                        <span class="info-block-label">TAXI & KISS AND RIDE</span>
-                        <p>Navigeer naar Strijkviertel, De Meern (Utrecht). Volg de borden "Kiss & Ride ❤️U Festival".</p>
+                        <span class="info-block-label" data-trans="s2.taxi.lbl">TAXI & KISS AND RIDE</span>
+                        <p data-trans="s2.taxi.txt">Navigeer naar Strijkviertel, De Meern (Utrecht). Volg de borden "Kiss &amp; Ride ❤️U Festival".</p>
                     </div>
                 </div>
             </section>
 
             <!-- ── Lockers ── -->
             <section class="wireframe-card content-card" style="margin-top: 14px;">
-                <span class="section-label">OP HET TERREIN</span>
-                <h2 class="section-title">LOCKERS</h2>
-                <p>Op het festivalterrein zijn kluisjes aanwezig (medium & groot) waar je je spullen veilig kunt opbergen. Hier passen 3 à 4 jassen in.</p>
+                <span class="section-label" data-trans="s3.label">OP HET TERREIN</span>
+                <h2 class="section-title" data-trans="s3.title">LOCKERS</h2>
+                <p data-trans="s3.intro">Op het festivalterrein zijn kluisjes aanwezig (medium &amp; groot) waar je je spullen veilig kunt opbergen. Hier passen 3 à 4 jassen in.</p>
                 <div class="info-block">
-                    <span class="info-block-label">OPENEN & SLUITEN</span>
-                    <span class="info-block-value">Onbeperkt de hele dag</span>
+                    <span class="info-block-label" data-trans="s3.open.lbl">OPENEN &amp; SLUITEN</span>
+                    <span class="info-block-value" data-trans="s3.open.val">Onbeperkt de hele dag</span>
                 </div>
                 <div class="info-block">
-                    <span class="info-block-label">RESERVEREN</span>
-                    <span class="info-block-value">Niet mogelijk — alleen op locatie</span>
+                    <span class="info-block-label" data-trans="s3.res.lbl">RESERVEREN</span>
+                    <span class="info-block-value" data-trans="s3.res.val">Niet mogelijk — alleen op locatie</span>
                 </div>
             </section>
 
             <!-- ── Golden GLU ── -->
             <section class="wireframe-card content-card golden-glu-card" style="margin-top: 14px;">
-                <span class="section-label">SPECIAAL</span>
-                <h2 class="section-title">✨ GOLDEN GLU</h2>
-                <p>Studenten van het GLU hebben speciale privileges tijdens het festival. Herkenbaar aan een <strong>gouden armbandje</strong>.</p>
+                <span class="section-label" data-trans="s4.label">SPECIAAL</span>
+                <h2 class="section-title" data-trans="s4.title">✨ GOLDEN GLU</h2>
+                <p data-trans-html="s4.intro">Studenten van het GLU hebben speciale privileges tijdens het festival. Herkenbaar aan een <strong>gouden armbandje</strong>.</p>
                 <div class="info-block">
-                    <span class="info-block-label">VOORDELEN</span>
-                    <span class="info-block-value">Gouden toiletten & goud gemarkeerde bestelpunten — zonder wachtrij</span>
+                    <span class="info-block-label" data-trans="s4.benefits.lbl">VOORDELEN</span>
+                    <span class="info-block-value" data-trans="s4.benefits.val">Gouden toiletten &amp; goud gemarkeerde bestelpunten — zonder wachtrij</span>
                 </div>
             </section>
 
             <!-- ── FAQ ── -->
             <section class="wireframe-card content-card" style="margin-top: 14px; margin-bottom: 14px;">
-                <span class="section-label">VEELGESTELDE VRAGEN</span>
-                <h2 class="section-title">FAQ</h2>
+                <span class="section-label" data-trans="s5.label">VEELGESTELDE VRAGEN</span>
+                <h2 class="section-title" data-trans="s5.title">FAQ</h2>
 
                 <div class="faq-item">
-                    <div class="faq-q">💊 Ik gebruik medicatie. Wat nu?</div>
-                    <p>Medicijnen meenemen is toegestaan in een dagdosis. Een doktersverklaring of medicatiepaspoort is verplicht. De beveiliging beoordeelt de documentatie. Bij gevaarlijke combinaties (bijv. met alcohol) kan de EHBO de medicijnen in bewaring nemen — je kunt deze dan uitsluitend bij de EHBO innemen.</p>
+                    <div class="faq-q" data-trans="s5.q1.q">💊 Ik gebruik medicatie. Wat nu?</div>
+                    <p data-trans="s5.q1.a">Medicijnen meenemen is toegestaan in een dagdosis. Een doktersverklaring of medicatiepaspoort is verplicht. De beveiliging beoordeelt de documentatie. Bij gevaarlijke combinaties (bijv. met alcohol) kan de EHBO de medicijnen in bewaring nemen — je kunt deze dan uitsluitend bij de EHBO innemen.</p>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-q">🚪 Mag ik het terrein tussentijds verlaten?</div>
-                    <p>Nee, helaas niet. Om de veiligheid te waarborgen is verlaten en herbetreden niet toegestaan. Hier zijn geen uitzonderingen op. Er zijn genoeg loungeplekken, foodstands en bars aanwezig om de hele dag comfortabel door te brengen.</p>
+                    <div class="faq-q" data-trans="s5.q2.q">🚪 Mag ik het terrein tussentijds verlaten?</div>
+                    <p data-trans="s5.q2.a">Nee, helaas niet. Om de veiligheid te waarborgen is verlaten en herbetreden niet toegestaan. Hier zijn geen uitzonderingen op. Er zijn genoeg loungeplekken, foodstands en bars aanwezig om de hele dag comfortabel door te brengen.</p>
                 </div>
             </section>
 
@@ -181,6 +181,129 @@
             </a>
         </nav>
     </div>
+    <script>
+    (function () {
+        var T = {
+            nl: {
+                's1.label': 'FESTIVAL',
+                's1.title': 'INFORMATIE',
+                's1.intro': 'Het ❤️U Festival is voor (nieuwe) studenten in de regio Utrecht en is een aanvulling op UIT.',
+                's1.datum.lbl': 'DATUM',
+                's1.datum.val': 'Zaterdag 5 september 2026',
+                's1.hours.lbl': 'OPENINGSTIJDEN',
+                's1.hours.val': '12:00 – 23:00 uur',
+                's1.loc.lbl': 'LOCATIE',
+                's1.loc.val': 'Strijkviertel, Utrecht',
+                's1.nav.lbl': 'NAVIGATIEADRES',
+                's1.nav.val': 'Strijkviertelweg, Utrecht',
+                's2.label': 'HOE KOM JE ER',
+                's2.title': 'BEREIKBAARHEID',
+                's2.bike.lbl': 'FIETS',
+                's2.bike.txt': 'Er is een grote gratis fietsenstalling aanwezig waar je jouw fiets de gehele dag kunt stallen.',
+                's2.car.lbl': 'AUTO',
+                's2.car.txt': "Parkeren op P+R Papendorp. Koop je ticket van tevoren \u2014 volg de borden \u2018P online ticket\u2019. Geen ticket? Kopen bij de parkeerwachter op locatie (PIN ONLY). Let op: <strong>VOL = VOL</strong>",
+                's2.ov.lbl': 'OPENBAAR VERVOER',
+                's2.ov.txt': 'Reis plannen via <strong>9292.nl</strong>',
+                's2.shuttle.lbl': 'GRATIS SHUTTLEBUS',
+                's2.shuttle.txt': "Vanaf Utrecht Centraal (Mineurslaan). Volg de witte bordjes met zwarte pijlen \u00e9n \u2018\u2764\uFE0FU Festival\u2019.",
+                's2.shuttle.to': '\u25b6 Richting festival: 12:00 \u2013 19:00',
+                's2.shuttle.back': '\u25c4 Terug naar station: vanaf 21:00',
+                's2.taxi.lbl': 'TAXI & KISS AND RIDE',
+                's2.taxi.txt': 'Navigeer naar Strijkviertel, De Meern (Utrecht). Volg de borden \u201cKiss & Ride \u2764\uFE0FU Festival\u201d.',
+                's3.label': 'OP HET TERREIN',
+                's3.title': 'LOCKERS',
+                's3.intro': 'Op het festivalterrein zijn kluisjes aanwezig (medium & groot) waar je je spullen veilig kunt opbergen. Hier passen 3 \u00e0 4 jassen in.',
+                's3.open.lbl': 'OPENEN & SLUITEN',
+                's3.open.val': 'Onbeperkt de hele dag',
+                's3.res.lbl': 'RESERVEREN',
+                's3.res.val': 'Niet mogelijk \u2014 alleen op locatie',
+                's4.label': 'SPECIAAL',
+                's4.title': '\u2728 GOLDEN GLU',
+                's4.intro': 'Studenten van het GLU hebben speciale privileges tijdens het festival. Herkenbaar aan een <strong>gouden armbandje</strong>.',
+                's4.benefits.lbl': 'VOORDELEN',
+                's4.benefits.val': 'Gouden toiletten & goud gemarkeerde bestelpunten \u2014 zonder wachtrij',
+                's5.label': 'VEELGESTELDE VRAGEN',
+                's5.title': 'FAQ',
+                's5.q1.q': '\ud83d\udc8a Ik gebruik medicatie. Wat nu?',
+                's5.q1.a': 'Medicijnen meenemen is toegestaan in een dagdosis. Een doktersverklaring of medicatiepaspoort is verplicht. De beveiliging beoordeelt de documentatie. Bij gevaarlijke combinaties (bijv. met alcohol) kan de EHBO de medicijnen in bewaring nemen \u2014 je kunt deze dan uitsluitend bij de EHBO innemen.',
+                's5.q2.q': '\ud83d\udeaa Mag ik het terrein tussentijds verlaten?',
+                's5.q2.a': 'Nee, helaas niet. Om de veiligheid te waarborgen is verlaten en herbetreden niet toegestaan. Hier zijn geen uitzonderingen op. Er zijn genoeg loungeplekken, foodstands en bars aanwezig om de hele dag comfortabel door te brengen.'
+            },
+            en: {
+                's1.label': 'FESTIVAL',
+                's1.title': 'INFORMATION',
+                's1.intro': 'The \u2764\uFE0FU Festival is for (new) students in the Utrecht region and is a complement to UIT.',
+                's1.datum.lbl': 'DATE',
+                's1.datum.val': 'Saturday, 5 September 2026',
+                's1.hours.lbl': 'OPENING HOURS',
+                's1.hours.val': '12:00 \u2013 23:00',
+                's1.loc.lbl': 'LOCATION',
+                's1.loc.val': 'Strijkviertel, Utrecht',
+                's1.nav.lbl': 'NAVIGATION ADDRESS',
+                's1.nav.val': 'Strijkviertelweg, Utrecht',
+                's2.label': 'HOW TO GET THERE',
+                's2.title': 'ACCESSIBILITY',
+                's2.bike.lbl': 'BICYCLE',
+                's2.bike.txt': 'A large free bicycle storage is available where you can park your bike for the entire day.',
+                's2.car.lbl': 'CAR',
+                's2.car.txt': "Park at P+R Papendorp. Buy your ticket in advance \u2014 follow the signs \u2018P online ticket\u2019. No ticket? Buy from the parking attendant on site (PIN ONLY). Note: <strong>FULL = FULL</strong>",
+                's2.ov.lbl': 'PUBLIC TRANSPORT',
+                's2.ov.txt': 'Plan your journey via <strong>9292.nl</strong>',
+                's2.shuttle.lbl': 'FREE SHUTTLE BUS',
+                's2.shuttle.txt': "From Utrecht Central Station (Mineurslaan). Follow the white signs with black arrows and \u2018\u2764\uFE0FU Festival\u2019.",
+                's2.shuttle.to': '\u25b6 To the festival: 12:00 \u2013 19:00',
+                's2.shuttle.back': '\u25c4 Back to station: from 21:00',
+                's2.taxi.lbl': 'TAXI & KISS AND RIDE',
+                's2.taxi.txt': 'Navigate to Strijkviertel, De Meern (Utrecht). Follow the signs \u201cKiss & Ride \u2764\uFE0FU Festival\u201d.',
+                's3.label': 'ON THE GROUNDS',
+                's3.title': 'LOCKERS',
+                's3.intro': 'There are lockers available at the festival site (medium & large) where you can safely store your belongings. 3 to 4 coats will fit inside.',
+                's3.open.lbl': 'OPEN & CLOSE',
+                's3.open.val': 'Unlimited throughout the day',
+                's3.res.lbl': 'RESERVATION',
+                's3.res.val': 'Not possible \u2014 on-site only',
+                's4.label': 'SPECIAL',
+                's4.title': '\u2728 GOLDEN GLU',
+                's4.intro': 'GLU students have special privileges at the festival. Recognizable by a <strong>golden wristband</strong>.',
+                's4.benefits.lbl': 'BENEFITS',
+                's4.benefits.val': 'Gold toilets & gold-marked order points \u2014 no queue',
+                's5.label': 'FREQUENTLY ASKED QUESTIONS',
+                's5.title': 'FAQ',
+                's5.q1.q': '\ud83d\udc8a I use medication. What now?',
+                's5.q1.a': 'Bringing medication is allowed in a daily dose. A doctor\u2019s note or medication passport is required. Security will assess the documentation. In case of dangerous combinations (e.g. with alcohol), the first aid team may keep the medication \u2014 you can only take it at the first aid station.',
+                's5.q2.q': '\ud83d\udeaa Can I leave the grounds during the event?',
+                's5.q2.a': 'No, unfortunately not. To ensure safety, leaving and re-entering is not permitted. There are no exceptions. There are plenty of lounge areas, food stands and bars to spend the whole day comfortably.'
+            }
+        };
+
+        function applyTranslations(lang) {
+            var dict = T[lang] || T.nl;
+            document.querySelectorAll('[data-trans]').forEach(function (el) {
+                var key = el.getAttribute('data-trans');
+                if (dict[key] !== undefined) el.textContent = dict[key];
+            });
+            document.querySelectorAll('[data-trans-html]').forEach(function (el) {
+                var key = el.getAttribute('data-trans-html');
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
+            });
+            var flagIcon = document.getElementById('flag-icon');
+            if (flagIcon) flagIcon.textContent = lang === 'en' ? '\ud83c\uddec\ud83c\udde7' : '\ud83c\uddf3\ud83c\uddf1';
+            var langBtn = document.getElementById('lang-toggle');
+            if (langBtn) {
+                langBtn.dataset.label = lang === 'en' ? 'EN' : 'NL';
+                langBtn.setAttribute('aria-label', lang === 'en' ? 'Schakel naar Nederlands' : 'Switch to English');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var lang = document.documentElement.dataset.lang || 'nl';
+            applyTranslations(lang);
+            new MutationObserver(function () {
+                applyTranslations(document.documentElement.dataset.lang || 'nl');
+            }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+        });
+    })();
+    </script>
     <script src="../app.js"></script>
 </body>
 </html>
