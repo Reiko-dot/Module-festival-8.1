@@ -3,7 +3,7 @@
    Strategy: Cache-first for assets, network-first for pages
    ───────────────────────────────────────────────────────── */
 
-const CACHE_NAME    = 'ufestival-v1';
+const CACHE_NAME    = 'ufestival-v2';
 const OFFLINE_URL   = './index.html';
 
 /* All files to pre-cache on install */
