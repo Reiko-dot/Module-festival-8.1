@@ -230,6 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
         deferredPrompt = e;
         showInstallBanner();
     });
+
+    /* ── iOS install tip ── */
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isInStandaloneMode = window.navigator.standalone === true;
+    const iosPromptShown = sessionStorage.getItem('ios-prompt-shown');
+
+    if (isIos && !isInStandaloneMode && !iosPromptShown) {
+        sessionStorage.setItem('ios-prompt-shown', '1');
+        showIosInstallTip();
+    }
 });
 
 /* ── Update available banner ─────────────────────────── */
@@ -286,4 +296,31 @@ function hideBanner() {
     if (!banner) return;
     banner.classList.remove('pwa-banner-show');
     setTimeout(() => banner.remove(), 300);
+}
+
+/* ── iOS install tip ─────────────────────────────────── */
+function showIosInstallTip() {
+    const lang = getLang();
+    const tip = document.createElement('div');
+    tip.id = 'ios-tip';
+
+    const msg = lang === 'nl'
+        ? `Tik op <strong>□↑</strong> en kies <strong>"Zet op beginscherm"</strong> om de app te installeren.`
+        : `Tap <strong>□↑</strong> then <strong>"Add to Home Screen"</strong> to install the app.`;
+
+    tip.innerHTML = `
+        <span class="pwa-banner-msg">${msg}</span>
+        <div class="pwa-banner-actions">
+            <button class="pwa-banner-close" id="ios-tip-close">✕</button>
+        </div>
+    `;
+    tip.className = 'pwa-banner ios-tip';
+    document.body.appendChild(tip);
+
+    requestAnimationFrame(() => tip.classList.add('pwa-banner-show'));
+
+    document.getElementById('ios-tip-close').addEventListener('click', () => {
+        tip.classList.remove('pwa-banner-show');
+        setTimeout(() => tip.remove(), 300);
+    });
 }

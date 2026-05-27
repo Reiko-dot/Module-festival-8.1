@@ -1,68 +1,1210 @@
 <!DOCTYPE html>
 <html lang="nl" data-theme="dark" data-lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>U Festival – Kaart</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#f03228">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="U Festival">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <script>
-        (function () {
-            var t = localStorage.getItem('ufestival-theme') || 'dark';
-            var l = localStorage.getItem('ufestival-lang') || 'nl';
-            document.documentElement.dataset.theme = t;
-            document.documentElement.dataset.lang = l;
-            document.documentElement.lang = l === 'nl' ? 'nl' : 'en';
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>U Festival – Kaart</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#f03228">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="U Festival">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var t = localStorage.getItem('ufestival-theme') || 'dark';
+      var l = localStorage.getItem('ufestival-lang') || 'nl';
+      document.documentElement.dataset.theme = t;
+      document.documentElement.dataset.lang = l;
+      document.documentElement.lang = l === 'nl' ? 'nl' : 'en';
+    })();
+  </script>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:       #f03228;
+      --accent:      #69008b;
+      --bg:          #1a1a1a;
+      --bg2:         #242424;
+      --bg3:         #2e2e2e;
+      --surface:     #303030;
+      --border:      rgba(255,255,255,.08);
+      --text:        #f0f0f0;
+      --text-muted:  #888;
+      --header-h:    56px;
+      --nav-h:       64px;
+      --safe-bot:    env(safe-area-inset-bottom, 0px);
+      --safe-top:    env(safe-area-inset-top, 0px);
+      --radius:      12px;
+      --shadow:      0 4px 24px rgba(0,0,0,.5);
+    }
+    [data-theme="light"] {
+      --bg:      #f4f4f4;
+      --bg2:     #e8e8e8;
+      --bg3:     #ddd;
+      --surface: #fff;
+      --border:  rgba(0,0,0,.1);
+      --text:    #111;
+      --text-muted: #666;
+      --shadow:  0 4px 24px rgba(0,0,0,.12);
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: 'Sansation', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* ── App Shell ── */
+    .app-screen {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    /* ── Header (matches style.css exactly) ── */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 18px 16px;
+      background: #0f111b;
+      flex-shrink: 0;
+      z-index: 100;
+      transition: background 0.35s ease;
+    }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-right { display: flex; align-items: center; gap: 6px; }
+    .brand-logo {
+      width: 70px; height: 70px;
+      border-radius: 14px;
+      padding: 8px;
+      object-fit: contain;
+    }
+    .title-text {
+      font-family: 'Sansation', sans-serif;
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .icon-btn {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.15s ease;
+      position: relative;
+      padding: 0;
+    }
+    .icon-btn:hover { background: rgba(255,255,255,0.14); transform: scale(1.06); }
+    .icon-btn:active { transform: scale(0.96); }
+    .icon-btn img { width: 26px; height: 26px; }
+    .flag-logo { width: 26px; height: 26px; border-radius: 3px; object-fit: cover; }
+
+    /* Lang badge overlay */
+    .icon-btn.lang-btn::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -4px; right: -4px;
+      font-family: 'Sansation', sans-serif;
+      font-size: 9px; font-weight: 300; font-style: italic;
+      background: #f03228; color: #fff;
+      border-radius: 5px;
+      padding: 1px 4px; line-height: 1.4;
+      pointer-events: none;
+    }
+    /* Theme-active ring */
+    .icon-btn.theme-btn.is-light {
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
+    }
+
+    /* ── Map Wrapper ── */
+    .map-wrapper {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #2c5a24;
+    }
+
+    .map-viewport {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      position: relative;
+      touch-action: none;
+      cursor: grab;
+    }
+    .map-viewport:active { cursor: grabbing; }
+
+    .map-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+
+    .map-base {
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ── Markers ── */
+    .markers-layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .marker {
+      position: absolute;
+      pointer-events: all;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* JS sets: transform: translate(-50%,-50%) scale(1/zoom) */
+      transition: filter .12s;
+    }
+    .marker:active { filter: brightness(1.35) drop-shadow(0 0 8px rgba(240,50,40,.7)); }
+
+    .marker img {
+      display: block;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.55));
+    }
+
+    /* Stage markers – 44px */
+    .marker-stage img { width: 44px; height: 44px; }
+
+    /* Facility markers – 32px */
+    .marker-facility img { width: 32px; height: 32px; }
+
+    /* Entrance – pill shape */
+    .marker-entrance img { width: 88px; height: 24px; }
+
+    /* User location dot */
+    .marker-user { pointer-events: none !important; z-index: 50; }
+    .user-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #3a7dff;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 6px rgba(58,125,255,.22);
+      animation: pulse-loc 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse-loc {
+      0%,100% { box-shadow: 0 0 0 4px rgba(58,125,255,.22); }
+      50%      { box-shadow: 0 0 0 14px rgba(58,125,255,.06); }
+    }
+
+    /* ── Map Controls ── */
+    .map-controls {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      display: flex; flex-direction: column; gap: 8px;
+      z-index: 90;
+    }
+    .ctrl-btn {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700;
+      color: var(--text);
+      transition: background .12s, transform .1s;
+    }
+    .ctrl-btn:active { transform: scale(.9); }
+    .ctrl-btn.locate-active { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .ctrl-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ── Legend ── */
+    .map-legend {
+      position: absolute;
+      left: 10px;
+      bottom: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 8px 10px;
+      z-index: 90;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 14px;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; color: var(--text); white-space: nowrap;
+    }
+    .legend-item img {
+      width: 16px; height: 16px;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+    .legend-item.l-entrance img { width: 24px; height: 7px; }
+
+    /* ── Info Panel ── */
+    .info-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 200;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .info-overlay.visible { opacity: 1; pointer-events: all; }
+
+    .info-panel {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 210;
+      background: var(--surface);
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 40px rgba(0,0,0,.55);
+      transform: translateY(100%);
+      transition: transform .3s cubic-bezier(.32,0,.67,0);
+      max-height: 76vh;
+      display: flex; flex-direction: column;
+      padding-bottom: calc(16px + var(--safe-bot));
+    }
+    .info-panel.open {
+      transform: translateY(0);
+      transition-timing-function: cubic-bezier(.33,1,.68,1);
+    }
+
+    .panel-handle {
+      width: 36px; height: 4px;
+      background: var(--bg3);
+      border-radius: 2px;
+      margin: 10px auto 0;
+      flex-shrink: 0;
+    }
+    .panel-header {
+      padding: 14px 16px 8px;
+      flex-shrink: 0;
+    }
+    .panel-marker-row { display: flex; align-items: center; gap: 12px; }
+    .panel-icon-wrap { flex-shrink: 0; }
+    .panel-icon-wrap img { display: block; }
+    .panel-title { font-size: 18px; font-weight: 700; color: var(--text); }
+    .panel-sub   { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .panel-divider { height: 1px; background: var(--border); margin: 0 16px; flex-shrink: 0; }
+    .panel-body  { padding: 0 16px; overflow-y: auto; flex: 1; }
+
+    .section-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--brand);
+      margin: 14px 0 6px;
+    }
+
+    /* Acts */
+    .acts-list { display: flex; flex-direction: column; }
+    .act-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .act-row:last-child { border-bottom: none; }
+    .act-row.act-now {
+      background: rgba(240,50,40,.07);
+      border-radius: 8px;
+      padding: 9px 8px;
+      margin: 0 -8px;
+    }
+    .act-time {
+      font-size: 12px; font-weight: 700;
+      color: var(--text-muted); min-width: 42px;
+    }
+    .act-row.act-now .act-time { color: var(--brand); }
+    .act-info { flex: 1; }
+    .act-artist { font-size: 14px; font-weight: 700; color: var(--text); }
+    .act-end    { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+    /* Panel day toggle */
+    .panel-day-toggle {
+      display: flex; gap: 6px;
+      margin: 12px 0 8px;
+    }
+    .panel-day-btn {
+      flex: 1;
+      padding: 6px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text-muted);
+      font-family: 'Sansation', sans-serif;
+      font-size: 12px; font-weight: 700;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .panel-day-btn.active {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+    .badge {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      border-radius: 4px; padding: 2px 6px;
+    }
+    .badge-now  { background: var(--brand);  color: #fff; }
+    .badge-next { background: var(--accent); color: #fff; }
+
+    /* Facility */
+    .fac-desc {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.6; padding: 10px 0 14px;
+    }
+
+    /* ── Bottom Nav (matches style.css exactly) ── */
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px 16px 18px;
+      background: #f03228;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+    .bottom-nav a.nav-item { text-decoration: none; }
+    .nav-item {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px;
+      padding: 12px 0;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      color: #cbd5e1;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .nav-item.active {
+      background: #ff8484;
+      color: #ffffff;
+      height: 80px;
+    }
+    .nav-label {
+      font-family: 'Sansation', sans-serif;
+      font-size: 11px; font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+    .nav-item.active .nav-label { color: #ffffff; }
+    .nav-logo { width: 35px; height: 35px; object-fit: contain; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: calc(110px + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(20,20,20,.94);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s, transform .22s;
+      white-space: nowrap;
+      box-shadow: 0 4px 18px rgba(0,0,0,.4);
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
 </head>
 <body>
-    <div class="app-screen">
-        <header class="app-header">
-            <div class="header-left">
-                <img class="brand-logo" src="svg_files/logo_white.svg" alt="U Festival logo">
-                <span class="title-text">FESTIVAL</span>
-            </div>
-            <div class="header-right">
-                <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Schakel lichte modus">
-                    <img src="svg_files/light_mode.svg" alt="Toggle theme">
-                </button>
-                <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
-                    <img class="flag-logo" id="flag-icon" src="svg_files/nederland_flag.svg" alt="NL">
-                </button>
-            </div>
-        </header>
+<div class="app-screen">
 
-       
-
-        <nav class="bottom-nav" aria-label="Navigatie">
-            <a href="index.html" class="nav-item">
-                <img class="nav-logo" src="svg_files/home_logo.svg" alt="Home">
-                <span class="nav-label" data-i18n="nav.home">Home</span>
-            </a>
-            <a href="info.html" class="nav-item">
-                <img class="nav-logo" src="svg_files/info_logo.svg" alt="Info">
-                <span class="nav-label" data-i18n="nav.info">Info</span>
-            </a>
-            <a href="schedule.html" class="nav-item">
-                <img class="nav-logo" src="svg_files/music_logo.svg" alt="Line-up">
-                <span class="nav-label" data-i18n="nav.lineup">Line-up</span>
-            </a>
-            <a href="map.html" class="nav-item active">
-                <img class="nav-logo" src="svg_files/map_logo.svg" alt="Kaart">
-                <span class="nav-label" data-i18n="nav.map">Kaart</span>
-            </a>
-        </nav>
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <img class="brand-logo" src="svg_files/logo_white.svg" alt="U Festival logo">
+      <span class="title-text">FESTIVAL</span>
     </div>
-    <script src="app.js"></script>
+    <div class="header-right">
+      <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Schakel lichte modus">
+        <img src="svg_files/light_mode.svg" alt="Toggle theme" id="theme-icon">
+      </button>
+      <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
+        <img class="flag-logo" id="flag-icon" src="svg_files/nederland_flag.svg" alt="NL">
+      </button>
+    </div>
+  </header>
+
+  <!-- MAP -->
+  <div class="map-wrapper">
+    <div class="map-viewport" id="viewport">
+      <div class="map-canvas" id="canvas">
+
+        <img id="map-base" class="map-base"
+             src="svg_files/kaart_festival_no_markers.svg"
+             alt="Festivalterrein kaart"
+             draggable="false">
+
+        <div class="markers-layer" id="markers-layer">
+
+          <!-- STAGES -->
+          <div class="marker marker-stage" style="left:14.2%;top:71%"
+               data-type="stage" data-id="stage1">
+            <img src="svg_files/marker_stage1_ponton.svg" alt="Stage 1 Ponton">
+          </div>
+          <div class="marker marker-stage" style="left:31.5%;top:60%"
+               data-type="stage" data-id="stage2">
+            <img src="svg_files/marker_stage2_the_lake.svg" alt="Stage 2 The Lake">
+          </div>
+          <div class="marker marker-stage" style="left:43.8%;top:52%"
+               data-type="stage" data-id="stage3">
+            <img src="svg_files/marker_stage3_the_club.svg" alt="Stage 3 The Club">
+          </div>
+          <div class="marker marker-stage" style="left:66.5%;top:21%"
+               data-type="stage" data-id="stage4">
+            <img src="svg_files/marker_stage4_hangar.svg" alt="Stage 4 Hangar">
+          </div>
+
+          <!-- TOILETS -->
+          <div class="marker marker-facility" style="left:8.5%;top:79%"
+               data-type="toilet" data-id="toilet1">
+            <img src="svg_files/marker_toilet.svg" alt="Toilet">
+          </div>
+          <div class="marker marker-facility" style="left:38.2%;top:42%"
+               data-type="toilet" data-id="toilet2">
+            <img src="svg_files/marker_toilet.svg" alt="Toilet">
+          </div>
+          <div class="marker marker-facility" style="left:75.5%;top:34%"
+               data-type="toilet" data-id="toilet3">
+            <img src="svg_files/marker_toilet.svg" alt="Toilet">
+          </div>
+
+          <!-- FOOD -->
+          <div class="marker marker-facility" style="left:21.5%;top:51%"
+               data-type="food" data-id="food1">
+            <img src="svg_files/marker_food.svg" alt="Eten">
+          </div>
+          <div class="marker marker-facility" style="left:35.2%;top:51%"
+               data-type="food" data-id="food2">
+            <img src="svg_files/marker_food.svg" alt="Eten">
+          </div>
+
+          <!-- BARS -->
+          <div class="marker marker-facility" style="left:29.5%;top:53%"
+               data-type="bar" data-id="bar1">
+            <img src="svg_files/marker_bar.svg" alt="Bar">
+          </div>
+          <div class="marker marker-facility" style="left:46.5%;top:57%"
+               data-type="bar" data-id="bar2">
+            <img src="svg_files/marker_bar.svg" alt="Bar">
+          </div>
+
+          <!-- MERCHANDISE -->
+          <div class="marker marker-facility" style="left:17.2%;top:50%"
+               data-type="merch" data-id="merch1">
+            <img src="svg_files/marker_merchandise.svg" alt="Merchandise">
+          </div>
+
+          <!-- ICE CREAM -->
+          <div class="marker marker-facility" style="left:36.8%;top:45%"
+               data-type="icecream" data-id="ice1">
+            <img src="svg_files/marker_ice_cream.svg" alt="Ijs">
+          </div>
+
+          <!-- FIRST AID -->
+          <div class="marker marker-facility" style="left:27.8%;top:44%"
+               data-type="firstaid" data-id="aid1">
+            <img src="svg_files/marker_first_aid.svg" alt="Eerste hulp">
+          </div>
+          <div class="marker marker-facility" style="left:17.8%;top:43%"
+               data-type="firstaid" data-id="aid2">
+            <img src="svg_files/marker_first_aid.svg" alt="Eerste hulp">
+          </div>
+
+          <!-- LOCKERS -->
+          <div class="marker marker-facility" style="left:22.5%;top:77%"
+               data-type="locker" data-id="locker1">
+            <img src="svg_files/marker_locker.svg" alt="Locker">
+          </div>
+          <div class="marker marker-facility" style="left:27.2%;top:77%"
+               data-type="locker" data-id="locker2">
+            <img src="svg_files/marker_locker.svg" alt="Locker">
+          </div>
+
+          <!-- ENTRANCE / EXIT -->
+          <div class="marker marker-entrance" style="left:50%;top:91%"
+               data-type="entrance" data-id="entrance">
+            <img src="svg_files/marker_entrance_exit.svg" alt="Ingang/Uitgang">
+          </div>
+
+          <!-- USER LOCATION DOT (GPS) -->
+          <div class="marker marker-user" id="m-user" style="display:none;left:50%;top:50%">
+            <div class="user-dot"></div>
+          </div>
+
+        </div><!-- /markers-layer -->
+      </div><!-- /map-canvas -->
+    </div><!-- /map-viewport -->
+
+    <!-- CONTROLS -->
+    <div class="map-controls">
+      <button class="ctrl-btn" id="btn-zoom-in"  aria-label="Inzoomen">+</button>
+      <button class="ctrl-btn" id="btn-zoom-out" aria-label="Uitzoomen">&#8722;</button>
+      <button class="ctrl-btn" id="btn-locate"   aria-label="Mijn locatie">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2a7 7 0 0 1 7 7c0 4.6-7 13-7 13S5 13.6 5 9a7 7 0 0 1 7-7zm0 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="map-legend">
+      <div class="legend-item"><img src="svg_files/marker_stage1_ponton.svg" alt=""><span data-i18n="leg.stage">Stage</span></div>
+      <div class="legend-item"><img src="svg_files/marker_toilet.svg" alt=""><span data-i18n="leg.toilet">WC</span></div>
+      <div class="legend-item"><img src="svg_files/marker_food.svg" alt=""><span data-i18n="leg.food">Eten</span></div>
+      <div class="legend-item"><img src="svg_files/marker_bar.svg" alt=""><span data-i18n="leg.bar">Bar</span></div>
+      <div class="legend-item"><img src="svg_files/marker_merchandise.svg" alt=""><span data-i18n="leg.merch">Merch</span></div>
+      <div class="legend-item"><img src="svg_files/marker_first_aid.svg" alt=""><span data-i18n="leg.aid">EHBO</span></div>
+      <div class="legend-item"><img src="svg_files/marker_locker.svg" alt=""><span data-i18n="leg.locker">Locker</span></div>
+      <div class="legend-item l-entrance"><img src="svg_files/marker_entrance_exit.svg" alt=""><span data-i18n="leg.entrance">Ingang</span></div>
+    </div>
+
+  </div><!-- /map-wrapper -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" aria-label="Navigatie">
+    <a href="index.html" class="nav-item">
+      <img class="nav-logo" src="svg_files/home_logo.svg" alt="Home">
+      <span class="nav-label" data-i18n="nav.home">Home</span>
+    </a>
+    <a href="info.html" class="nav-item">
+      <img class="nav-logo" src="svg_files/info_logo.svg" alt="Info">
+      <span class="nav-label" data-i18n="nav.info">Info</span>
+    </a>
+    <a href="schedule.html" class="nav-item">
+      <img class="nav-logo" src="svg_files/music_logo.svg" alt="Line-up">
+      <span class="nav-label" data-i18n="nav.lineup">Line-up</span>
+    </a>
+    <a href="map.html" class="nav-item active">
+      <img class="nav-logo" src="svg_files/map_logo.svg" alt="Kaart">
+      <span class="nav-label" data-i18n="nav.map">Kaart</span>
+    </a>
+  </nav>
+
+</div><!-- /app-screen -->
+
+<!-- INFO PANEL -->
+<div class="info-overlay" id="overlay"></div>
+<div class="info-panel" id="info-panel">
+  <div class="panel-handle"></div>
+  <div class="panel-header">
+    <div class="panel-marker-row">
+      <div class="panel-icon-wrap" id="panel-icon-wrap">
+        <img id="panel-icon" src="" alt="" style="width:44px;height:44px">
+      </div>
+      <div>
+        <div class="panel-title" id="panel-title"></div>
+        <div class="panel-sub"   id="panel-sub"></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-divider"></div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+/* ================================================================
+   U FESTIVAL – Interactive Map
+   Location: Strijkviertel, Utrecht
+================================================================ */
+
+/* ─── i18n ─────────────────────────────────────────────────── */
+const STRINGS = {
+  nl: {
+    'nav.home':'Home','nav.info':'Info','nav.lineup':'Line-up','nav.map':'Kaart',
+    'leg.stage':'Stage','leg.toilet':'WC','leg.food':'Eten','leg.bar':'Bar',
+    'leg.merch':'Merch','leg.aid':'EHBO','leg.locker':'Locker','leg.entrance':'Ingang',
+    'panel.now':'Nu','panel.next':'Straks','panel.prog':'Programma',
+    'fac.toilet.title':'Toiletten','fac.toilet.sub':'WC-blok',
+    'fac.toilet.desc':'Meerdere toiletblokken verspreid over het terrein. Houd de bezetting in de gaten via de app.',
+    'fac.food.title':'Eten & Drinken','fac.food.sub':'Food stand',
+    'fac.food.desc':'Diverse food trucks en stands met een ruim aanbod, inclusief vegetarische en veganistische opties. Betalen kan met festivalmunten of contactloos.',
+    'fac.bar.title':'Bar','fac.bar.sub':'Drankjes & cocktails',
+    'fac.bar.desc':'Volledige bar met bier, cocktails, wijn en alcoholvrije verfrissingen. Festivalmunten en contactloos betalen geaccepteerd.',
+    'fac.merch.title':'Merchandise','fac.merch.sub':'Officiële merchandise',
+    'fac.merch.desc':'Officiële U Festival merchandise: T-shirts, hoodies, tassen, caps en meer. Zolang de voorraad strekt.',
+    'fac.ice.title':'Ijs & Verkoeling','fac.ice.sub':'IJsjes & koude drankjes',
+    'fac.ice.desc':'IJs, sorbet en koude verfrissingen beschikbaar. Contactloos betalen mogelijk.',
+    'fac.aid.title':'Eerste Hulp','fac.aid.sub':'EHBO-post',
+    'fac.aid.desc':'24/7 bezette EHBO-post met getraind medisch personeel. Neem altijd contact op bij twijfel over je gezondheid.',
+    'fac.locker.title':'Kluisjes','fac.locker.sub':'Bewaar je spullen veilig',
+    'fac.locker.desc':'Kluisjes te huur voor je waardevolle spullen. Breng een geldig identiteitsbewijs mee. Beschikbaar op meerdere locaties op het terrein.',
+    'fac.entrance.title':'Ingang / Uitgang','fac.entrance.sub':'Hoofdtoegang festivalterrein',
+    'fac.entrance.desc':'Hoofdingang en -uitgang van het festivalterrein. Zorg dat je polsband gescand wordt bij binnenkomst. Sluiting na 00:00.',
+    'loc.searching':'Locatie zoeken\u2026',
+    'loc.denied':'Locatiemachtiging geweigerd.',
+    'loc.unavail':'Locatieservice niet beschikbaar.',
+    'loc.tracking':'Locatie wordt gevolgd.',
+  },
+  en: {
+    'nav.home':'Home','nav.info':'Info','nav.lineup':'Line-up','nav.map':'Map',
+    'leg.stage':'Stage','leg.toilet':'WC','leg.food':'Food','leg.bar':'Bar',
+    'leg.merch':'Merch','leg.aid':'First Aid','leg.locker':'Locker','leg.entrance':'Entrance',
+    'panel.now':'Now','panel.next':'Next','panel.prog':'Programme',
+    'fac.toilet.title':'Toilets','fac.toilet.sub':'WC block',
+    'fac.toilet.desc':'Multiple toilet blocks spread across the venue. Check availability via the app.',
+    'fac.food.title':'Food & Drinks','fac.food.sub':'Food stand',
+    'fac.food.desc':'Various food trucks and stands with a wide selection, including vegetarian and vegan options. Pay with festival tokens or contactless.',
+    'fac.bar.title':'Bar','fac.bar.sub':'Drinks & cocktails',
+    'fac.bar.desc':'Full bar with beer, cocktails, wine and non-alcoholic options. Festival tokens and contactless payment accepted.',
+    'fac.merch.title':'Merchandise','fac.merch.sub':'Official merchandise',
+    'fac.merch.desc':'Official U Festival merchandise: T-shirts, hoodies, bags, caps and more. While supplies last.',
+    'fac.ice.title':'Ice Cream & Cold Drinks','fac.ice.sub':'Cold refreshments',
+    'fac.ice.desc':'Ice cream, sorbet and cold refreshments. Contactless payment available.',
+    'fac.aid.title':'First Aid','fac.aid.sub':'Medical post',
+    'fac.aid.desc':'24/7 staffed first aid post with trained medical personnel. Always contact them when in doubt about your health.',
+    'fac.locker.title':'Lockers','fac.locker.sub':'Store your valuables safely',
+    'fac.locker.desc':'Lockers available for rent for your valuables. Bring a valid ID. Available at multiple locations on the grounds.',
+    'fac.entrance.title':'Entrance / Exit','fac.entrance.sub':'Main festival access',
+    'fac.entrance.desc':'Main entrance and exit of the festival grounds. Make sure your wristband is scanned on entry. Gates close after 00:00.',
+    'loc.searching':'Searching location\u2026',
+    'loc.denied':'Location permission denied.',
+    'loc.unavail':'Location service unavailable.',
+    'loc.tracking':'Location is being tracked.',
+  }
+};
+
+let lang = document.documentElement.dataset.lang || 'nl';
+const tr = (k) => (STRINGS[lang] || STRINGS.nl)[k] || k;
+
+function applyI18n() {
+  lang = document.documentElement.dataset.lang || 'nl';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = tr(el.dataset.i18n);
+  });
+}
+
+/* ─── Schedule ──────────────────────────────────────────────── */
+// Times derived from schedule.html (START_HOUR=10, slots of 15 min each)
+const SCHEDULE = {
+  stage1: {
+    nameNl: 'Poton', nameEn: 'Poton',
+    img: 'svg_files/marker_stage1_ponton.svg',
+    sat: [
+      {time:'10:30', end:'12:00', artist:'Armin van Buuren'},
+      {time:'13:00', end:'14:30', artist:'Kensington'},
+      {time:'14:30', end:'16:30', artist:'De Staat'},
+      {time:'17:00', end:'18:45', artist:'Navarone'},
+      {time:'19:30', end:'21:30', artist:'Dotan'},
+      {time:'22:15', end:'24:00', artist:'Froukje'},
+    ],
+    sun: [
+      {time:'10:45', end:'12:30', artist:'Martin Garrix'},
+      {time:'14:30', end:'16:30', artist:'Within Temptation'},
+      {time:'17:00', end:'18:30', artist:"Chef'Special"},
+      {time:'19:30', end:'21:15', artist:'Eefje de Visser'},
+      {time:'22:15', end:'24:00', artist:'Spinvis'},
+    ],
+  },
+  stage2: {
+    nameNl: 'The Lake', nameEn: 'The Lake',
+    img: 'svg_files/marker_stage2_the_lake.svg',
+    sat: [
+      {time:'10:00', end:'11:00', artist:'Talent set 1'},
+      {time:'11:30', end:'13:00', artist:'Talent set 2'},
+      {time:'14:00', end:'15:30', artist:'Talent set 3'},
+      {time:'16:30', end:'17:30', artist:'Talent set 4'},
+      {time:'18:30', end:'20:00', artist:'Talent set 5'},
+      {time:'21:00', end:'22:30', artist:'Talent set 6'},
+      {time:'22:00', end:'23:30', artist:'Talent set 7'},
+    ],
+    sun: [
+      {time:'10:00', end:'11:00', artist:'Talent set 1'},
+      {time:'11:30', end:'13:00', artist:'Talent set 2'},
+      {time:'14:00', end:'15:30', artist:'Talent set 3'},
+      {time:'16:30', end:'17:30', artist:'Talent set 4'},
+      {time:'18:30', end:'20:00', artist:'Talent set 5'},
+      {time:'21:00', end:'22:30', artist:'Talent set 6'},
+    ],
+  },
+  stage3: {
+    nameNl: 'The Club', nameEn: 'The Club',
+    img: 'svg_files/marker_stage3_the_club.svg',
+    sat: [
+      {time:'11:30', end:'13:00', artist:'Comedy'},
+      {time:'14:00', end:'15:30', artist:'Lecture'},
+      {time:'16:30', end:'18:00', artist:'Theater'},
+      {time:'18:00', end:'19:45', artist:'Movie'},
+      {time:'20:15', end:'21:45', artist:'Performance'},
+      {time:'22:15', end:'24:00', artist:'Illusionist'},
+    ],
+    sun: [
+      {time:'11:30', end:'13:00', artist:'Comedy'},
+      {time:'13:30', end:'15:00', artist:'Lecture'},
+      {time:'16:30', end:'18:00', artist:'Theater'},
+      {time:'18:00', end:'19:30', artist:'Movie'},
+      {time:'20:30', end:'22:00', artist:'Magic Show'},
+    ],
+  },
+  stage4: {
+    nameNl: 'Hanggar', nameEn: 'Hanggar',
+    img: 'svg_files/marker_stage4_hangar.svg',
+    sat: [
+      {time:'10:00', end:'11:00', artist:'DJ set 1'},
+      {time:'11:15', end:'12:30', artist:'DJ set 2'},
+      {time:'13:00', end:'14:15', artist:'DJ set 3'},
+      {time:'14:30', end:'16:00', artist:'DJ set 4'},
+      {time:'16:30', end:'18:00', artist:'DJ set 5'},
+      {time:'18:15', end:'19:45', artist:'DJ set 6'},
+      {time:'20:00', end:'21:45', artist:'DJ set 7'},
+      {time:'22:15', end:'24:00', artist:'DJ set 8'},
+    ],
+    sun: [
+      {time:'10:00', end:'10:45', artist:'DJ set 1'},
+      {time:'11:00', end:'12:15', artist:'DJ set 2'},
+      {time:'13:15', end:'14:45', artist:'DJ set 3'},
+      {time:'14:30', end:'16:00', artist:'DJ set 4'},
+      {time:'16:30', end:'18:00', artist:'DJ set 5'},
+      {time:'18:15', end:'19:30', artist:'DJ set 6'},
+      {time:'20:00', end:'21:45', artist:'DJ set 7'},
+      {time:'22:00', end:'24:00', artist:'DJ set 8'},
+    ],
+  },
+};
+
+const FAC_MAP = {
+  toilet:   {imgNormal:true, img:'svg_files/marker_toilet.svg',        prefix:'fac.toilet'},
+  food:     {imgNormal:true, img:'svg_files/marker_food.svg',          prefix:'fac.food'},
+  bar:      {imgNormal:true, img:'svg_files/marker_bar.svg',           prefix:'fac.bar'},
+  merch:    {imgNormal:true, img:'svg_files/marker_merchandise.svg',   prefix:'fac.merch'},
+  icecream: {imgNormal:true, img:'svg_files/marker_ice_cream.svg',     prefix:'fac.ice'},
+  firstaid: {imgNormal:true, img:'svg_files/marker_first_aid.svg',     prefix:'fac.aid'},
+  locker:   {imgNormal:true, img:'svg_files/marker_locker.svg',        prefix:'fac.locker'},
+  entrance: {imgWide:true,   img:'svg_files/marker_entrance_exit.svg', prefix:'fac.entrance'},
+};
+
+function timeToMin(t) {
+  const [h,m] = t.split(':').map(Number);
+  return h*60+m;
+}
+function getNowMin() {
+  const d = new Date();
+  return d.getHours()*60 + d.getMinutes();
+}
+function getActStatus(acts) {
+  const now = getNowMin();
+  let curIdx = -1, nxtIdx = -1;
+  for (let i = 0; i < acts.length; i++) {
+    const s = timeToMin(acts[i].time);
+    const e = timeToMin(acts[i].end) || 24*60;
+    if (now >= s && now < e) { curIdx = i; nxtIdx = i+1 < acts.length ? i+1 : -1; break; }
+    if (now < s && nxtIdx === -1) { nxtIdx = i; }
+  }
+  return { curIdx, nxtIdx };
+}
+
+/* ─── Pan / Zoom Engine ─────────────────────────────────────── */
+const viewport  = document.getElementById('viewport');
+const canvas    = document.getElementById('canvas');
+const mapBase   = document.getElementById('map-base');
+const markersLy = document.getElementById('markers-layer');
+
+// Intrinsic map dimensions (SVG viewBox)
+const MAP_W = 2330.58;
+const MAP_H = 1353.19;
+
+let zoom = 1, minZoom = 0.25, maxZoom = 6;
+let panX = 0, panY = 0;
+let baseW = 0, baseH = 0;
+
+function initMap() {
+  const vw = viewport.clientWidth;
+  const vh = viewport.clientHeight;
+  if (!vw || !vh) return;
+  const fit = Math.min(vw / MAP_W, vh / MAP_H);
+  baseW = MAP_W * fit;
+  baseH = MAP_H * fit;
+  mapBase.style.width  = baseW + 'px';
+  mapBase.style.height = baseH + 'px';
+  markersLy.style.width  = baseW + 'px';
+  markersLy.style.height = baseH + 'px';
+  zoom = 1;
+  panX = (vw - baseW) / 2;
+  panY = (vh - baseH) / 2;
+  // min zoom: map fills at least 80% of narrowest viewport dimension
+  minZoom = Math.min(vw, vh) / Math.max(baseW, baseH) * 0.8;
+  minZoom = Math.max(0.2, Math.min(1, minZoom));
+  applyTransform();
+}
+
+function applyTransform() {
+  canvas.style.transform = `translate(${panX}px,${panY}px) scale(${zoom})`;
+  updateMarkers();
+}
+
+function updateMarkers() {
+  const inv = 1 / zoom;
+  document.querySelectorAll('.marker').forEach(m => {
+    m.style.transform = `translate(-50%,-50%) scale(${inv})`;
+  });
+}
+
+function clampPan(x, y) {
+  const vw = viewport.clientWidth;
+  const vh = viewport.clientHeight;
+  const sw = baseW * zoom;
+  const sh = baseH * zoom;
+  const pad = 80;
+  return [
+    Math.max(vw - sw - pad, Math.min(pad, x)),
+    Math.max(vh - sh - pad, Math.min(pad, y)),
+  ];
+}
+
+function zoomAt(nz, cx, cy) {
+  nz = Math.max(minZoom, Math.min(maxZoom, nz));
+  const f = nz / zoom;
+  panX = cx - f * (cx - panX);
+  panY = cy - f * (cy - panY);
+  zoom = nz;
+  [panX, panY] = clampPan(panX, panY);
+  applyTransform();
+}
+
+/* Mouse wheel */
+viewport.addEventListener('wheel', e => {
+  e.preventDefault();
+  const r = viewport.getBoundingClientRect();
+  zoomAt(zoom * (e.deltaY > 0 ? 0.85 : 1.18), e.clientX - r.left, e.clientY - r.top);
+}, { passive: false });
+
+/* Mouse drag */
+let dragging = false, dsx, dsy, dpx, dpy;
+viewport.addEventListener('mousedown', e => {
+  if (e.button !== 0) return;
+  dragging = true; dsx = e.clientX; dsy = e.clientY; dpx = panX; dpy = panY;
+});
+window.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  [panX, panY] = clampPan(dpx + e.clientX - dsx, dpy + e.clientY - dsy);
+  applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; });
+
+/* Touch drag + pinch */
+let tBase = [], pinchDist0 = 0, pinchZoom0 = 1, pinchPan0 = [0,0], pinchMid0 = [0,0];
+let touchPanBase = [0,0];
+
+viewport.addEventListener('touchstart', e => {
+  tBase = Array.from(e.touches);
+  if (tBase.length === 1) {
+    touchPanBase = [panX, panY];
+  } else if (tBase.length === 2) {
+    const dx = tBase[1].clientX - tBase[0].clientX;
+    const dy = tBase[1].clientY - tBase[0].clientY;
+    pinchDist0 = Math.hypot(dx, dy);
+    pinchZoom0 = zoom;
+    pinchPan0  = [panX, panY];
+    const r = viewport.getBoundingClientRect();
+    pinchMid0 = [
+      (tBase[0].clientX + tBase[1].clientX) / 2 - r.left,
+      (tBase[0].clientY + tBase[1].clientY) / 2 - r.top,
+    ];
+  }
+}, { passive: true });
+
+viewport.addEventListener('touchmove', e => {
+  e.preventDefault();
+  const tc = Array.from(e.touches);
+  if (tc.length === 1 && tBase.length === 1) {
+    const dx = tc[0].clientX - tBase[0].clientX;
+    const dy = tc[0].clientY - tBase[0].clientY;
+    [panX, panY] = clampPan(touchPanBase[0]+dx, touchPanBase[1]+dy);
+    applyTransform();
+  } else if (tc.length === 2) {
+    const dx = tc[1].clientX - tc[0].clientX;
+    const dy = tc[1].clientY - tc[0].clientY;
+    const dist = Math.hypot(dx, dy);
+    const nz = Math.max(minZoom, Math.min(maxZoom, pinchZoom0 * dist / pinchDist0));
+    const f = nz / pinchZoom0;
+    panX = pinchMid0[0] - f * (pinchMid0[0] - pinchPan0[0]);
+    panY = pinchMid0[1] - f * (pinchMid0[1] - pinchPan0[1]);
+    zoom = nz;
+    [panX, panY] = clampPan(panX, panY);
+    applyTransform();
+  }
+}, { passive: false });
+
+viewport.addEventListener('touchend', e => {
+  tBase = Array.from(e.touches);
+  if (tBase.length === 1) touchPanBase = [panX, panY];
+}, { passive: true });
+
+/* Zoom buttons */
+document.getElementById('btn-zoom-in').addEventListener('click', () =>
+  zoomAt(zoom * 1.45, viewport.clientWidth/2, viewport.clientHeight/2));
+document.getElementById('btn-zoom-out').addEventListener('click', () =>
+  zoomAt(zoom / 1.45, viewport.clientWidth/2, viewport.clientHeight/2));
+
+/* ─── GPS / User Location ───────────────────────────────────── */
+// Festival GPS bounds — Strijkviertel, Utrecht (calibrate precise corners if needed)
+const BOUNDS = { latTop:52.0630, latBottom:52.0535, lngLeft:5.0815, lngRight:5.0995 };
+
+let watchId    = null;
+let followMode = false;
+const btnLoc   = document.getElementById('btn-locate');
+const mUser    = document.getElementById('m-user');
+
+function gpsToPct(lat, lng) {
+  const x = (lng - BOUNDS.lngLeft)    / (BOUNDS.lngRight  - BOUNDS.lngLeft)    * 100;
+  const y = (BOUNDS.latTop - lat)     / (BOUNDS.latTop    - BOUNDS.latBottom)  * 100;
+  return { x, y };
+}
+
+function placeUser(lat, lng) {
+  const { x, y } = gpsToPct(lat, lng);
+  mUser.style.left    = x + '%';
+  mUser.style.top     = y + '%';
+  mUser.style.display = 'flex';
+  updateMarkers(); // re-apply counter-scale to user dot too
+}
+
+function centerOnUser(lat, lng) {
+  const { x, y } = gpsToPct(lat, lng);
+  const mx = (x / 100) * baseW;
+  const my = (y / 100) * baseH;
+  const tz = Math.max(zoom, 2.0);
+  panX = viewport.clientWidth  / 2 - mx * tz;
+  panY = viewport.clientHeight / 2 - my * tz;
+  zoom = tz;
+  [panX, panY] = clampPan(panX, panY);
+  applyTransform();
+}
+
+function startLocate() {
+  if (!('geolocation' in navigator)) { showToast(tr('loc.unavail')); return; }
+  followMode = true;
+  btnLoc.classList.add('locate-active');
+  showToast(tr('loc.searching'));
+  watchId = navigator.geolocation.watchPosition(
+    pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      placeUser(lat, lng);
+      if (followMode) { centerOnUser(lat, lng); followMode = false; showToast(tr('loc.tracking')); }
+    },
+    err => {
+      btnLoc.classList.remove('locate-active');
+      followMode = false;
+      showToast(err.code === err.PERMISSION_DENIED ? tr('loc.denied') : tr('loc.unavail'));
+      watchId = null;
+    },
+    { enableHighAccuracy: true, maximumAge: 4000, timeout: 12000 }
+  );
+}
+
+function stopLocate() {
+  if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+  btnLoc.classList.remove('locate-active');
+  followMode = false;
+  mUser.style.display = 'none';
+}
+
+btnLoc.addEventListener('click', () => {
+  if (watchId !== null) stopLocate();
+  else startLocate();
+});
+
+/* ─── Info Panel ────────────────────────────────────────────── */
+const overlay   = document.getElementById('overlay');
+const infoPanel = document.getElementById('info-panel');
+const panelIcon = document.getElementById('panel-icon');
+const panelIconWrap = document.getElementById('panel-icon-wrap');
+const panelTitle= document.getElementById('panel-title');
+const panelSub  = document.getElementById('panel-sub');
+const panelBody = document.getElementById('panel-body');
+
+function openPanel(el) {
+  const type = el.dataset.type;
+  const id   = el.dataset.id;
+
+  if (type === 'stage') {
+    const d = SCHEDULE[id];
+    if (!d) return;
+    panelIcon.src    = d.img;
+    panelIcon.style.width  = '44px';
+    panelIcon.style.height = '44px';
+    panelTitle.textContent = lang === 'en' ? d.nameEn : d.nameNl;
+    panelSub.textContent   = 'Strijkviertel, Utrecht';
+    renderSchedule(d);
+  } else {
+    const f = FAC_MAP[type];
+    if (!f) return;
+    panelIcon.src = f.img;
+    if (f.imgWide) {
+      panelIcon.style.width  = '80px';
+      panelIcon.style.height = '22px';
+    } else {
+      panelIcon.style.width  = '44px';
+      panelIcon.style.height = '44px';
+    }
+    panelTitle.textContent = tr(f.prefix + '.title');
+    panelSub.textContent   = tr(f.prefix + '.sub');
+    panelBody.innerHTML = `<p class="fac-desc">${tr(f.prefix + '.desc')}</p>`;
+  }
+
+  infoPanel.classList.add('open');
+  overlay.classList.add('visible');
+}
+
+function closePanel() {
+  infoPanel.classList.remove('open');
+  overlay.classList.remove('visible');
+}
+
+overlay.addEventListener('click', closePanel);
+
+// Swipe down to close panel
+let panelTouchY0 = 0;
+infoPanel.addEventListener('touchstart', e => {
+  panelTouchY0 = e.touches[0].clientY;
+}, { passive: true });
+infoPanel.addEventListener('touchend', e => {
+  const dy = e.changedTouches[0].clientY - panelTouchY0;
+  if (dy > 60) closePanel();
+}, { passive: true });
+
+let _scheduleStageData = null;
+let _scheduleDay = 'sat';
+
+function renderSchedule(stageData) {
+  _scheduleStageData = stageData;
+  const satLabel = lang === 'en' ? 'Saturday' : 'Zaterdag';
+  const sunLabel = lang === 'en' ? 'Sunday'   : 'Zondag';
+
+  const acts = stageData[_scheduleDay] || [];
+  const { curIdx, nxtIdx } = getActStatus(acts);
+
+  let html = `
+    <div class="panel-day-toggle">
+      <button class="panel-day-btn${_scheduleDay==='sat'?' active':''}" data-day="sat">${satLabel}</button>
+      <button class="panel-day-btn${_scheduleDay==='sun'?' active':''}" data-day="sun">${sunLabel}</button>
+    </div>
+    <div class="acts-list">`;
+
+  acts.forEach((a, i) => {
+    const isNow  = i === curIdx;
+    const isNext = i === nxtIdx;
+    html += `<div class="act-row${isNow ? ' act-now' : ''}">
+      <span class="act-time">${a.time}</span>
+      <div class="act-info">
+        <div class="act-artist">${a.artist}</div>
+        <div class="act-end">${a.end}</div>
+      </div>
+      ${isNow  ? `<span class="badge badge-now">${tr('panel.now')}</span>`  : ''}
+      ${isNext && !isNow ? `<span class="badge badge-next">${tr('panel.next')}</span>` : ''}
+    </div>`;
+  });
+  html += '</div>';
+  panelBody.innerHTML = html;
+
+  // Day toggle click handlers
+  panelBody.querySelectorAll('.panel-day-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _scheduleDay = btn.dataset.day;
+      renderSchedule(_scheduleStageData);
+    });
+  });
+}
+
+document.querySelectorAll('.marker[data-type]').forEach(m => {
+  m.addEventListener('click', e => {
+    e.stopPropagation();
+    openPanel(m);
+  });
+});
+
+/* ─── Toast ─────────────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ─── Theme Toggle ──────────────────────────────────────────── */
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('ufestival-theme', next);
+  document.getElementById('theme-toggle').classList.toggle('is-light', next === 'light');
+});
+
+/* ─── Language Toggle ───────────────────────────────────────── */
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  const next = document.documentElement.dataset.lang === 'nl' ? 'en' : 'nl';
+  document.documentElement.dataset.lang = next;
+  document.documentElement.lang = next;
+  localStorage.setItem('ufestival-lang', next);
+  const langBtn = document.getElementById('lang-toggle');
+  langBtn.dataset.label = next.toUpperCase();
+  document.getElementById('flag-icon').src = next === 'nl'
+    ? 'svg_files/nederland_flag.svg'
+    : 'svg_files/gb_flag.svg';
+  applyI18n();
+  // Refresh open panel content
+  if (infoPanel.classList.contains('open')) {
+    const active = document.querySelector('.marker[data-type].__active__');
+    if (active) openPanel(active);
+  }
+});
+
+/* ─── Init ──────────────────────────────────────────────────── */
+window.addEventListener('resize', initMap);
+
+function tryInit() {
+  if (mapBase.complete && mapBase.naturalWidth > 0) {
+    initMap();
+  } else {
+    mapBase.addEventListener('load', initMap, { once: true });
+    mapBase.addEventListener('error', initMap, { once: true });
+    // Fallback
+    setTimeout(initMap, 400);
+  }
+}
+
+tryInit();
+applyI18n();
+
+// Hook into existing app.js if present
+if (typeof window.ufestivalInit === 'function') window.ufestivalInit();
+</script>
 </body>
 </html>
