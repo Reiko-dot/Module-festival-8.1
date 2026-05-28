@@ -223,21 +223,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── "Add to Home Screen" prompt ── */
-    let deferredPrompt = null;
+    /* ── Install prompt: fire immediately only when arriving via QR ── */
+    const fromQR = new URLSearchParams(location.search).get('ref') === 'qr';
+
     window.addEventListener('beforeinstallprompt', e => {
         e.preventDefault();
-        deferredPrompt = e;
-        showInstallBanner();
+        window._deferredPrompt = e;
+        if (fromQR) {
+            e.prompt(); /* Show native install dialog right away */
+        }
     });
 
-    /* ── iOS install tip ── */
+    /* ── iOS: guide only on QR visits ── */
     const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
     const isInStandaloneMode = window.navigator.standalone === true;
-    const iosPromptShown = sessionStorage.getItem('ios-prompt-shown');
-
-    if (isIos && !isInStandaloneMode && !iosPromptShown) {
-        sessionStorage.setItem('ios-prompt-shown', '1');
+    if (fromQR && isIos && !isInStandaloneMode) {
         showIosInstallTip();
     }
 });
@@ -250,23 +250,6 @@ function showUpdateBanner() {
     showBanner(msg, btn, () => {
         navigator.serviceWorker.controller?.postMessage({ type: 'SKIP_WAITING' });
     });
-}
-
-/* ── Install banner ──────────────────────────────────── */
-function showInstallBanner() {
-    const lang = getLang();
-    const msg  = lang === 'nl' ? 'Voeg toe aan beginscherm' : 'Add to Home Screen';
-    const btn  = lang === 'nl' ? 'Installeren'              : 'Install';
-    showBanner(msg, btn, async () => {
-        if (!window._deferredPrompt) return;
-        window._deferredPrompt.prompt();
-        const { outcome } = await window._deferredPrompt.userChoice;
-        if (outcome === 'accepted') hideBanner();
-        window._deferredPrompt = null;
-    });
-
-    /* Store for the click handler */
-    window.addEventListener('beforeinstallprompt', e => { window._deferredPrompt = e; });
 }
 
 /* ── Generic banner helper ───────────────────────────── */
