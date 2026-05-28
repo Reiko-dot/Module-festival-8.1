@@ -223,21 +223,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── Install prompt: fire immediately only when arriving via QR ── */
-    const fromQR = new URLSearchParams(location.search).get('ref') === 'qr';
-
+    /* ── Install prompt: store event, show banner with install button ── */
     window.addEventListener('beforeinstallprompt', e => {
         e.preventDefault();
         window._deferredPrompt = e;
-        if (fromQR) {
-            e.prompt(); /* Show native install dialog right away */
-        }
+        showInstallBanner();
     });
 
-    /* ── iOS: guide only on QR visits ── */
+    /* ── iOS: always show install tip ── */
     const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
     const isInStandaloneMode = window.navigator.standalone === true;
-    if (fromQR && isIos && !isInStandaloneMode) {
+    if (isIos && !isInStandaloneMode) {
         showIosInstallTip();
     }
 });
@@ -279,6 +275,22 @@ function hideBanner() {
     if (!banner) return;
     banner.classList.remove('pwa-banner-show');
     setTimeout(() => banner.remove(), 300);
+}
+
+/* ── Install banner ──────────────────────────────────── */
+function showInstallBanner() {
+    const lang = getLang();
+    const msg  = lang === 'nl' ? 'Installeer de U Festival app' : 'Install the U Festival app';
+    const btn  = lang === 'nl' ? 'Installeren' : 'Install';
+    showBanner(msg, btn, () => {
+        if (window._deferredPrompt) {
+            window._deferredPrompt.prompt();
+            window._deferredPrompt.userChoice.then(() => {
+                window._deferredPrompt = null;
+                hideBanner();
+            });
+        }
+    });
 }
 
 /* ── iOS install tip ─────────────────────────────────── */
