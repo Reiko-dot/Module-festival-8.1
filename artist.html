@@ -26,16 +26,6 @@
         })();
     </script>
     <style>
-        /* ── Artist page layout ── */
-        .artist-screen {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: var(--body-bg);
-            font-family: 'Sansation', sans-serif;
-            overflow: hidden;
-        }
-
         /* scrollable middle zone between header and nav */
         .artist-body {
             flex: 1;
@@ -320,6 +310,30 @@
 
     <script>
         // ─── All DB data embedded from festival_artists.sql ───────────────────────
+        // --- UI translations ---
+        const UI = {
+            nl: {
+                aboutHeading:  'Over de artiest',
+                videoHeading:  'Video',
+                backLabel:     'Line-up',
+                backAriaLabel: 'Terug naar line-up',
+                notFound:      'Artiest niet gevonden',
+                notFoundSub:   'Ga terug naar de',
+                notFoundLink:  'line-up',
+                days: { 'Zaterdag': 'Zaterdag', 'Zondag': 'Zondag' }
+            },
+            en: {
+                aboutHeading:  'About the artist',
+                videoHeading:  'Video',
+                backLabel:     'Line-up',
+                backAriaLabel: 'Back to line-up',
+                notFound:      'Artist not found',
+                notFoundSub:   'Go back to the',
+                notFoundLink:  'line-up',
+                days: { 'Zaterdag': 'Saturday', 'Zondag': 'Sunday' }
+            }
+        };
+
         const ACTS = {
             1: {
                 name: 'Armin van Buuren',
@@ -439,8 +453,11 @@
             return m ? `https://www.youtube.com/embed/${m[1]}?rel=0` : null;
         }
 
-        // ─── Render ───────────────────────────────────────────────────────────────
+        // --- Render ---
         function render() {
+            const lang = document.documentElement.dataset.lang || 'nl';
+            const t = UI[lang] || UI.nl;
+
             const params = new URLSearchParams(window.location.search);
             const id = parseInt(params.get('id'));
             const act = ACTS[id];
@@ -449,39 +466,34 @@
             if (!act) {
                 body.innerHTML = `
                     <div class="not-found">
-                        <span class="nf-icon">🎵</span>
-                        <strong>Artiest niet gevonden</strong>
-                        <span>Ga terug naar de <a href="./pages/schedule.html" style="color:#f03228">line-up</a>.</span>
+                        <span class="nf-icon">&#127925;</span>
+                        <strong>${t.notFound}</strong>
+                        <span>${t.notFoundSub} <a href="./pages/schedule.html" style="color:#f03228">${t.notFoundLink}</a>.</span>
                     </div>`;
                 return;
             }
 
-            // Update page title
-            document.title = `U Festival – ${act.name}`;
-
+            document.title = `U Festival \u2013 ${act.name}`;
             const embedUrl = toEmbedUrl(act.video_url);
+            const dayLabel = t.days[act.day] || act.day;
 
             body.innerHTML = `
-                <!-- Hero image -->
                 <div class="artist-hero">
                     <img
                         src="${act.image_url}"
                         alt="${act.name}"
                         onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a0a0a 0%,#3a0c0c 50%,#f03228 100%)';"
                     >
-                    <a href="./pages/schedule.html" class="back-btn" aria-label="Terug naar line-up">
+                    <a href="./pages/schedule.html" class="back-btn" aria-label="${t.backAriaLabel}">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
-                        Line-up
+                        ${t.backLabel}
                     </a>
                     <span class="hero-stage-badge">${act.stage}</span>
                 </div>
 
-                <!-- Content -->
                 <div class="artist-content">
-
-                    <!-- Name + time -->
                     <div class="artist-name-row">
                         <h1 class="artist-name">${act.name}</h1>
                         <div class="artist-time-pill">
@@ -489,24 +501,21 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            ${act.day} · ${act.time}
+                            ${dayLabel} \u00b7 ${act.time}
                         </div>
                     </div>
 
-                    <!-- Descriptor tag -->
                     <div class="genre-tags">
                         <span class="genre-tag">${act.short_description}</span>
                     </div>
 
-                    <!-- Bio -->
-                    <p class="section-heading">Over de artiest</p>
+                    <p class="section-heading">${t.aboutHeading}</p>
                     <p class="artist-bio">${act.full_text}</p>
 
                     <div class="divider"></div>
 
                     ${embedUrl ? `
-                    <!-- Video -->
-                    <p class="section-heading">Video</p>
+                    <p class="section-heading">${t.videoHeading}</p>
                     <div class="video-wrap">
                         <iframe
                             src="${embedUrl}"
@@ -517,12 +526,14 @@
                         ></iframe>
                     </div>
                     ` : ''}
-
                 </div>
             `;
         }
 
+        // Initial render + re-render on language switch
         render();
+        new MutationObserver(function () { render(); })
+            .observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
     </script>
 
     <script src="./app.js"></script>

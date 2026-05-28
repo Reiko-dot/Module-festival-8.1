@@ -60,7 +60,7 @@
                     <img src="../svg_files/light_mode.svg" alt="Toggle theme">
                 </button>
                 <button class="icon-btn lang-btn" id="lang-toggle" data-label="NL" aria-label="Switch to English">
-                    <span class="flag-emoji" id="flag-icon">🇳🇱</span>
+                    <img class="flag-logo" id="flag-icon" src="../svg_files/nederland_flag.svg" alt="NL">
                 </button>
             </div>
         </header>
@@ -262,7 +262,7 @@
     (function () {
         function syncFlag(lang) {
             var flagIcon = document.getElementById('flag-icon');
-            if (flagIcon) flagIcon.textContent = lang === 'en' ? '\ud83c\uddec\ud83c\udde7' : '\ud83c\uddf3\ud83c\uddf1';
+            if (flagIcon) { flagIcon.src = lang === 'en' ? '../svg_files/uk_flag.svg' : '../svg_files/nederland_flag.svg'; flagIcon.alt = lang === 'en' ? 'EN' : 'NL'; }
             var langBtn = document.getElementById('lang-toggle');
             if (langBtn) {
                 langBtn.dataset.label = lang === 'en' ? 'EN' : 'NL';
