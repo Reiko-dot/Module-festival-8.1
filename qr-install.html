@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U Festival – Installeer de App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Sansation', sans-serif;
+            background: #0f111b;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 20px;
+        }
+
+        .card {
+            max-width: 360px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-title {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .brand-title span { color: #f03228; }
+
+        .brand-label {
+            font-size: 11px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.22em;
+            color: #247BA0;
+            text-transform: uppercase;
+            margin-top: -14px;
+        }
+
+        .qr-wrap {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f03228;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.4;
+        }
+
+        .step-text strong { color: #fff; font-weight: 700; }
+
+        .url-chip {
+            font-size: 11px;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="brand-title">U <span>FESTIVAL</span></span>
+        <span class="brand-label">Officiële app — installeer via QR</span>
+
+        <div class="qr-wrap" id="qr-wrap"></div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <span class="step-text">Scan met je <strong>camera-app</strong></span>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <span class="step-text">Tik op de <strong>melding</strong> die verschijnt</span>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <span class="step-text">Druk op <strong>"Installeren"</strong></span>
+            </div>
+        </div>
+
+        <span class="url-chip">u240761.gluwebsite.nl/Module-festival-8.1</span>
+    </div>
+
+    <script>
+        new QRCode(document.getElementById('qr-wrap'), {
+            text: 'https://u240761.gluwebsite.nl/Module-festival-8.1/',
+            width: 200,
+            height: 200,
+            colorDark: '#0f111b',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>

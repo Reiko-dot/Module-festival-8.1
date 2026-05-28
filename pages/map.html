@@ -986,17 +986,8 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 });
 
 /* ─── Language Toggle ───────────────────────────────────────── */
-document.getElementById('lang-toggle').addEventListener('click', () => {
-  const next = document.documentElement.dataset.lang === 'nl' ? 'en' : 'nl';
-  document.documentElement.dataset.lang = next;
-  document.documentElement.lang = next === 'nl' ? 'nl' : 'en';
-  localStorage.setItem('ufestival-lang', next);
-  applyI18n();
-  if (infoPanel.classList.contains('open')) {
-    const active = document.querySelector('.marker[data-type].__active__');
-    if (active) openPanel(active);
-  }
-});
+// Handled by app.js (same as info.html). The MutationObserver below
+// reacts to data-lang changes and keeps translations + flag in sync.
 
 /* ─── Init ──────────────────────────────────────────────────── */
 window.addEventListener('resize', initMap);
@@ -1034,7 +1025,9 @@ if (typeof window.ufestivalInit === 'function') window.ufestivalInit();
         var lang = document.documentElement.dataset.lang || 'nl';
         syncFlag(lang);
         new MutationObserver(function () {
-            syncFlag(document.documentElement.dataset.lang || 'nl');
+            var currentLang = document.documentElement.dataset.lang || 'nl';
+            syncFlag(currentLang);
+            if (typeof applyI18n === 'function') applyI18n();
         }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
     });
 })();
