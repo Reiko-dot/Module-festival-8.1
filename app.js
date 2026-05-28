@@ -156,14 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(getTheme());
     applyLang(getLang());
 
-    /* ── Page transition: fade in ── */
-    document.body.classList.add('page-enter');
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            document.body.classList.add('page-enter-active');
-        });
-    });
-
     /* ── Theme toggle ── */
     document.getElementById('theme-toggle')?.addEventListener('click', () => {
         const next = getTheme() === 'dark' ? 'light' : 'dark';
@@ -174,17 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('lang-toggle')?.addEventListener('click', () => {
         const next = getLang() === 'nl' ? 'en' : 'nl';
         applyLang(next);
-    });
-
-    /* ── Nav link transitions ── */
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(link => {
-        link.addEventListener('click', e => {
-            const href = link.getAttribute('href');
-            if (!href || link.classList.contains('active')) return;
-            e.preventDefault();
-            document.body.classList.add('page-exit');
-            setTimeout(() => { window.location.href = href; }, 220);
-        });
     });
 
     /* ── Schedule day toggle (schedule page only) ── */
