@@ -87,16 +87,40 @@
 
     .marker-user { pointer-events: none !important; z-index: 50; }
     .user-dot {
-      width: 18px; height: 18px;
+      width: 22px; height: 22px;
       border-radius: 50%;
       background: #3a7dff;
       border: 3px solid #fff;
-      box-shadow: 0 0 0 6px rgba(58,125,255,.22);
-      animation: pulse-loc 2.2s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(58,125,255,.7);
+      animation: pulse-loc 2s ease-out infinite;
+      position: relative;
+    }
+    /* inner glow ring */
+    .user-dot::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: rgba(58,125,255,.18);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    /* outer glow ring */
+    .user-dot::after {
+      content: '';
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      background: rgba(58,125,255,.07);
+      animation: pulse-ring 2s ease-out infinite 0.35s;
     }
     @keyframes pulse-loc {
-      0%,100% { box-shadow: 0 0 0 4px rgba(58,125,255,.22); }
-      50%      { box-shadow: 0 0 0 14px rgba(58,125,255,.06); }
+      0%   { box-shadow: 0 0 0 0 rgba(58,125,255,.7); }
+      70%  { box-shadow: 0 0 0 14px rgba(58,125,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(58,125,255,0); }
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(0.7); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
     }
 
     .map-controls {
@@ -807,8 +831,11 @@ function gpsToPct(lat, lng) {
 
 function placeUser(lat, lng) {
   const { x, y } = gpsToPct(lat, lng);
-  mUser.style.left    = x + '%';
-  mUser.style.top     = y + '%';
+  /* Clamp to map bounds so dot is always visible, even when testing outside the festival area */
+  const cx = Math.max(2, Math.min(98, x));
+  const cy = Math.max(2, Math.min(98, y));
+  mUser.style.left    = cx + '%';
+  mUser.style.top     = cy + '%';
   mUser.style.display = 'flex';
   updateMarkers(); // re-apply counter-scale to user dot too
 }
