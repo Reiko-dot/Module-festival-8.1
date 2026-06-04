@@ -3,7 +3,7 @@
    Strategy: Cache-first for assets, network-first for pages
    ───────────────────────────────────────────────────────── */
 
-const CACHE_NAME    = 'ufestival-v2';
+const CACHE_NAME    = 'ufestival-v4';
 const OFFLINE_URL   = './index.html';
 
 /* All files to pre-cache on install */
@@ -40,7 +40,7 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => cache.addAll(PRECACHE_URLS))
-            .then(() => self.skipWaiting())   /* activate immediately */
+            // Removed direct skipWaiting() call here to allow custom update UI mechanics
     );
 });
 
@@ -62,16 +62,21 @@ self.addEventListener('fetch', event => {
     /* Only handle GET requests */
     if (event.request.method !== 'GET') return;
 
-    const url = new URL(event.request.url);
+    /* Skip non-http(s) requests (e.g. chrome-extension://) */
+    if (!event.request.url.startsWith('http')) return;
 
     /* Navigation requests → network-first, fallback to cached page */
     if (event.request.mode === 'navigate') {
         event.respondWith(
             fetch(event.request)
                 .then(response => {
-                    /* Update cache with fresh page */
-                    const clone = response.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    /* Only cache successful 200 responses & use event.waitUntil */
+                    if (response && response.status === 200) {
+                        const clone = response.clone();
+                        event.waitUntil(
+                            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone))
+                        );
+                    }
                     return response;
                 })
                 .catch(() => caches.match(event.request)
@@ -92,7 +97,10 @@ self.addEventListener('fetch', event => {
                     return response;
                 }
                 const clone = response.clone();
-                caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                /* Use event.waitUntil to prevent worker termination during caching */
+                event.waitUntil(
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone))
+                );
                 return response;
             });
         })

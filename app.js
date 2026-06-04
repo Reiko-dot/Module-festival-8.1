@@ -181,12 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ── Service Worker registration ── */
-    if ('serviceWorker' in navigator && !location.pathname.includes('/pages/')) {
-        navigator.serviceWorker.register('./sw.js')
+    if ('serviceWorker' in navigator) {
+        // Dynamically resolve relative paths depending on subfolder hierarchy
+        const swPath = window.location.pathname.includes('/pages/') ? '../sw.js' : './sw.js';
+
+        navigator.serviceWorker.register(swPath)
             .then(reg => {
                 console.log('[SW] Registered, scope:', reg.scope);
 
                 /* Show update banner if a new SW is waiting */
+                if (reg.waiting) {
+                    showUpdateBanner();
+                }
+
                 reg.addEventListener('updatefound', () => {
                     const newWorker = reg.installing;
                     newWorker?.addEventListener('statechange', () => {
@@ -225,7 +232,9 @@ function showUpdateBanner() {
     const msg  = lang === 'nl' ? 'Update beschikbaar' : 'Update available';
     const btn  = lang === 'nl' ? 'Vernieuwen'         : 'Refresh';
     showBanner(msg, btn, () => {
-        navigator.serviceWorker.controller?.postMessage({ type: 'SKIP_WAITING' });
+        navigator.serviceWorker.getRegistration().then(reg => {
+            reg?.waiting?.postMessage({ type: 'SKIP_WAITING' });
+        });
     });
 }
 

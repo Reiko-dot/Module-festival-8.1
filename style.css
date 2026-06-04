@@ -957,6 +957,63 @@ html[data-theme="light"] .shuttle-chip {
     line-height: 1.7;
 }
 
+/* ── Accordion sections ── */
+.acc-section {
+    padding: 0 !important;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.acc-header {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 22px 24px;
+    gap: 12px;
+    text-align: left;
+}
+
+.acc-header > span:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.acc-header .section-title {
+    margin-bottom: 0;
+}
+
+.acc-chevron {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 0.28s ease;
+    display: inline-block;
+}
+
+.acc-section.acc-open .acc-chevron {
+    transform: rotate(90deg);
+}
+
+ .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 22px;
+}
+
+.acc-section.acc-open .acc-body {
+    max-height: 2000px;
+    padding-bottom: 28px;
+    cursor: default;
+}
+
 /* ── Golden GLU card ── */
 .golden-glu-card {
     border-color: rgba(234, 179, 8, 0.3) !important;
