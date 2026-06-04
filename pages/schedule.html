@@ -209,8 +209,6 @@
 
     <script>
         // ─── Schedule data ─────────────────────────────────────────────────────────
-        // Artists that exist in the DB get link: '../artist.html?id=X'
-        // All other slots have no link (talent sets, DJ sets, etc.)
         const SCHEDULE = {
             saturday: [
                 {
@@ -467,13 +465,17 @@
 
         function syncFlag(lang) {
             var flagIcon = document.getElementById('flag-icon');
-            if (flagIcon) { flagIcon.src = lang === 'en' ? '../svg_files/uk_flag.svg' : '../svg_files/nederland_flag.svg'; flagIcon.alt = lang === 'en' ? 'EN' : 'NL'; }
+            if (flagIcon) { 
+                flagIcon.src = lang === 'en' ? '../svg_files/uk_flag.svg' : '../svg_files/nederland_flag.svg'; 
+                flagIcon.alt = lang === 'en' ? 'EN' : 'NL'; 
+            }
             var langBtn = document.getElementById('lang-toggle');
             if (langBtn) {
                 langBtn.dataset.label = lang === 'en' ? 'EN' : 'NL';
                 langBtn.setAttribute('aria-label', lang === 'en' ? 'Schakel naar Nederlands' : 'Switch to English');
             }
         }
+
         document.addEventListener('DOMContentLoaded', function () {
             var lang = document.documentElement.dataset.lang || 'nl';
             syncFlag(lang);
@@ -495,9 +497,6 @@
                     syncFlag(newLang);
                 });
             }
-        });
-    })();
-    </script>
 
             new MutationObserver(function () {
                 syncFlag(document.documentElement.dataset.lang || 'nl');
