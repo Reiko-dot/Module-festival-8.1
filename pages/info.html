@@ -304,6 +304,17 @@
         });
     })();
     </script>
+    <script>
+        if (window.location.search.includes('no-sw=1') && 'serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => {
+                return Promise.all(regs.map(reg => reg.unregister()));
+            }).then(() => {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('no-sw');
+                window.location.replace(url.toString());
+            });
+        }
+    </script>
     <script src="../app.js"></script>
 </body>
 </html>

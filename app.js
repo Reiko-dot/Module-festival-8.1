@@ -180,7 +180,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ── Optional Service Worker cleanup via URL ── */
+    if (window.location.search.includes('no-sw=1') && 'serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => {
+            return Promise.all(regs.map(reg => reg.unregister()));
+        }).then(() => {
+            console.log('[SW] Unregistered all service workers via no-sw=1');
+            const url = new URL(window.location.href);
+            url.searchParams.delete('no-sw');
+            window.location.replace(url.toString());
+        });
+        return;
+    }
+
     /* ── Service Worker registration ── */
+    const isInfoPage = window.location.pathname.includes('/pages/info.html');
+    if (isInfoPage) {
+        console.log('[SW] Skipping service worker on info page');
+        return;
+    }
+
     if ('serviceWorker' in navigator) {
         // Dynamically resolve relative paths depending on subfolder hierarchy
         const swPath = window.location.pathname.includes('/pages/') ? '../sw.js' : './sw.js';

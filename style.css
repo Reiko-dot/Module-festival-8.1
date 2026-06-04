@@ -13,13 +13,13 @@
         linear-gradient(180deg, #111827 0%, #0f172a 50%, #020617 100%);
     --header-bg: #0f111b;
     --title-color: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.06);
-    --card-border: rgba(255, 255, 255, 0.10);
-    --hero-bg: rgba(255, 255, 255, 0.08);
-    --hero-border: rgba(255, 255, 255, 0.12);
-    --hero-title: #ffffff;
-    --hero-label: #247BA0;
-    --text-primary: #f1f5f9;
+    --card-bg: #0f172a;
+    --card-border: #1e293b;
+    --hero-bg: #111827;
+    --hero-border: #1f2937;
+    --hero-title: #f8fafc;
+    --hero-label: #94a3b8;
+    --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #E3B505;
     --text-subtle: #247BA0;
@@ -33,20 +33,19 @@
 }
 
 html[data-theme="light"] {
-    --body-bg: radial-gradient(circle at top, rgba(240, 50, 40, 0.06), transparent 40%),
-        linear-gradient(180deg, #f8fafc 0%, #f1f5f9 60%, #e2e8f0 100%);
+    --body-bg: #e2e8f0;
     --header-bg: #0f111b;
     --title-color: #ffffff;
-    --card-bg: #ffffff;
-    --card-border: rgba(15, 23, 42, 0.10);
-    --hero-bg: #ffffff;
-    --hero-border: rgba(15, 23, 42, 0.12);
+    --card-bg: #f8fafc;
+    --card-border: #cbd5e1;
+    --hero-bg: #f8fafc;
+    --hero-border: #cbd5e1;
     --hero-title: #0f172a;
-    --hero-label: #247BA0;
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #b08d00;
-    --text-subtle: #1a6080;
+    --hero-label: #64748b;
+    --text-primary: #0f1720;
+    --text-secondary: #475569;
+    --text-muted: #6b7280;
+    --text-subtle: #334155;
     --divider: rgba(15, 23, 42, 0.08);
     --artist-bg: #f8fafc;
     --artist-border: rgba(15, 23, 42, 0.08);
@@ -343,7 +342,7 @@ body.page-exit {
     font-family: 'Sansation', sans-serif;
     font-size: 30px;
     font-weight: 700;
-    color: #247BA0;
+    color: var(--text-primary);
     letter-spacing: 0.06em;
     margin-bottom: 20px;
     line-height: 1.1;
