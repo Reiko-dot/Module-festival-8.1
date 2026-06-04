@@ -45,6 +45,102 @@
         .perf-block.has-link:active {
             filter: brightness(1.2);
         }
+
+        .schedule-filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 16px 18px;
+            margin: 0 18px 16px;
+            border-radius: 28px;
+            background: rgba(8, 16, 50, 0.96) !important;
+            border: 1px solid rgba(36, 115, 255, 0.35) !important;
+            box-shadow: 0 24px 42px rgba(3, 10, 36, 0.45) !important;
+        }
+
+        .stage-filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .stage-filter-btn,
+        .stage-filter-reset-btn {
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 14px 20px;
+            min-width: 110px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.24) !important;
+            background: rgba(31, 61, 138, 0.95) !important;
+            color: #e8f2ff !important;
+            font-family: 'Sansation', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(18, 69, 156, 0.16) !important;
+            transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+        }
+
+        .stage-filter-btn:hover,
+        .stage-filter-reset-btn:hover,
+        .stage-filter-btn:focus-visible,
+        .stage-filter-reset-btn:focus-visible {
+            transform: translateY(-1px);
+            background: rgba(69, 119, 236, 0.95);
+            border-color: rgba(105, 170, 255, 0.55);
+            box-shadow: 0 14px 30px rgba(41, 94, 214, 0.22);
+        }
+
+        .stage-filter-btn.active {
+            background: linear-gradient(135deg, #2785ff 0%, #3fabff 100%) !important;
+            border-color: #82bfff !important;
+            color: #fff !important;
+            box-shadow: 0 0 28px rgba(49, 126, 255, 0.6) !important;
+        }
+
+        .stage-filter-reset-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d9e5ff;
+            border-color: rgba(255, 255, 255, 0.26);
+        }
+
+        .stage-filter-reset-btn:disabled {
+            opacity: 0.45;
+            cursor: default;
+            box-shadow: none;
+        }
+
+        /* Theme-aware filter button styling */
+        [data-theme="light"] .stage-filter-btn,
+        [data-theme="light"] .stage-filter-reset-btn {
+            background: rgba(240, 245, 250, 0.95) !important;
+            color: #1e40af !important;
+            border-color: rgba(30, 64, 175, 0.25) !important;
+        }
+
+        [data-theme="light"] .stage-filter-btn.active {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+            color: #ffffff !important;
+            border-color: #60a5fa !important;
+        }
+
+        [data-theme="light"] .stage-filter-reset-btn:disabled {
+            background: rgba(200, 210, 220, 0.5) !important;
+            color: #64748b !important;
+            opacity: 0.6 !important;
+        }
+
+        [data-theme="light"] .schedule-filters {
+            background: rgba(220, 80, 65, 0.12) !important;
+            border-color: rgba(220, 80, 65, 0.3) !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 
@@ -75,6 +171,16 @@
                 <div class="day-toggle">
                     <button class="day-btn active" data-day="saturday" data-i18n="schedule.saturday">Zaterdag</button>
                     <button class="day-btn" data-day="sunday" data-i18n="schedule.sunday">Zondag</button>
+                </div>
+            </div>
+
+            <div class="schedule-filters" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 18px 10px; background: rgba(240, 50, 40, 0.15); border: 1px solid rgba(240, 50, 40, 0.25); border-radius: 8px; box-shadow: none;">
+                <div class="stage-filter-group" aria-label="Stage filters" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <button type="button" class="stage-filter-btn active" data-stage="Poton" style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 8px; min-width: 45px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.24); background: rgba(31,61,138,0.95); color: #e8f2ff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px;">Poton</button>
+                    <button type="button" class="stage-filter-btn active" data-stage="The Lake" style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 8px; min-width: 45px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.24); background: rgba(31,61,138,0.95); color: #e8f2ff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px;">The Lake</button>
+                    <button type="button" class="stage-filter-btn active" data-stage="The Club" style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 8px; min-width: 45px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.24); background: rgba(31,61,138,0.95); color: #e8f2ff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px;">The Club</button>
+                    <button type="button" class="stage-filter-btn active" data-stage="Hanggar" style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 8px; min-width: 45px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.24); background: rgba(31,61,138,0.95); color: #e8f2ff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px;">Hanggar</button>
+                    <button type="button" id="stage-filter-reset" class="stage-filter-reset-btn" disabled style="display:inline-flex; align-items:center; justify-content:center; padding: 4px 8px; min-width: 45px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.26); background: rgba(255,255,255,0.08); color: #d9e5ff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px;">Reset</button>
                 </div>
             </div>
 
@@ -215,6 +321,7 @@
         function buildStageRow({ stage, perfs }) {
             const row = document.createElement('div');
             row.className = 'stage-row';
+            row.dataset.stage = stage;
 
             const label = document.createElement('div');
             label.className = 'stage-label';
@@ -252,14 +359,112 @@
             return wrap;
         }
 
+        // ─── Filters ───────────────────────────────────────────────────────────────
+        let selectedStage = null;
+
+        function updateStageButtons() {
+            const buttons = document.querySelectorAll('.stage-filter-btn');
+            buttons.forEach(btn => {
+                const stage = btn.dataset.stage;
+                const active = !selectedStage || selectedStage === stage;
+                btn.classList.toggle('active', active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+            const resetButton = document.getElementById('stage-filter-reset');
+            if (resetButton) {
+                resetButton.disabled = !selectedStage;
+            }
+        }
+
+        function applyScheduleFilters() {
+            document.querySelectorAll('.stage-row').forEach(row => {
+                const stage = row.dataset.stage;
+                const visible = !selectedStage || selectedStage === stage;
+                row.style.display = visible ? '' : 'none';
+                row.classList.toggle('stage-selected', selectedStage === stage);
+            });
+            document.querySelectorAll('.day-schedule').forEach(schedule => {
+                const visibleRows = Array.from(schedule.querySelectorAll('.stage-row')).some(row => row.style.display !== 'none');
+                schedule.style.display = visibleRows ? '' : 'none';
+            });
+        }
+
+        function setupStageFilters() {
+            const buttons = document.querySelectorAll('.stage-filter-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    selectedStage = button.dataset.stage;
+                    applyScheduleFilters();
+                    updateStageButtons();
+                });
+            });
+
+            const resetButton = document.getElementById('stage-filter-reset');
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
+                    selectedStage = null;
+                    applyScheduleFilters();
+                    updateStageButtons();
+                });
+            }
+
+            updateStageButtons();
+        }
+
         // ─── Render ────────────────────────────────────────────────────────────────
         const container = document.getElementById('timeline-scroll');
         container.appendChild(buildDaySchedule('saturday', SCHEDULE.saturday, false));
         container.appendChild(buildDaySchedule('sunday',   SCHEDULE.sunday,   true));
+        setupStageFilters();
+        applyScheduleFilters();
     </script>
 
     <script>
     (function () {
+        function updateFilterButtonTheme(theme) {
+            const buttons = document.querySelectorAll('.stage-filter-btn, .stage-filter-reset-btn');
+            const filterContainer = document.querySelector('.schedule-filters');
+            if (theme === 'light') {
+                if (filterContainer) {
+                    filterContainer.style.background = 'rgba(220, 80, 65, 0.12)';
+                    filterContainer.style.borderColor = 'rgba(220, 80, 65, 0.3)';
+                    filterContainer.style.boxShadow = 'none';
+                }
+                buttons.forEach(btn => {
+                    btn.style.background = 'rgba(240, 245, 250, 0.95)';
+                    btn.style.color = '#1e40af';
+                    btn.style.borderColor = 'rgba(30, 64, 175, 0.25)';
+                    btn.style.boxShadow = 'none';
+                });
+                const activeButtons = document.querySelectorAll('.stage-filter-btn.active');
+                activeButtons.forEach(btn => {
+                    btn.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+                    btn.style.color = '#ffffff';
+                    btn.style.borderColor = '#60a5fa';
+                    btn.style.boxShadow = 'none';
+                });
+            } else {
+                if (filterContainer) {
+                    filterContainer.style.background = 'rgba(240, 50, 40, 0.15)';
+                    filterContainer.style.borderColor = 'rgba(240, 50, 40, 0.25)';
+                    filterContainer.style.boxShadow = 'none';
+                }
+                buttons.forEach(btn => {
+                    btn.style.background = 'rgba(31,61,138,0.95)';
+                    btn.style.color = '#e8f2ff';
+                    btn.style.borderColor = 'rgba(255,255,255,0.24)';
+                    btn.style.boxShadow = 'none';
+                });
+                const activeButtons = document.querySelectorAll('.stage-filter-btn.active');
+                activeButtons.forEach(btn => {
+                    btn.style.background = 'linear-gradient(135deg, #2785ff 0%, #3fabff 100%)';
+                    btn.style.color = '#fff';
+                    btn.style.borderColor = '#82bfff';
+                    btn.style.boxShadow = 'none';
+                });
+            }
+        }
+
         function syncFlag(lang) {
             var flagIcon = document.getElementById('flag-icon');
             if (flagIcon) { flagIcon.src = lang === 'en' ? '../svg_files/uk_flag.svg' : '../svg_files/nederland_flag.svg'; flagIcon.alt = lang === 'en' ? 'EN' : 'NL'; }
@@ -272,6 +477,28 @@
         document.addEventListener('DOMContentLoaded', function () {
             var lang = document.documentElement.dataset.lang || 'nl';
             syncFlag(lang);
+            var theme = document.documentElement.dataset.theme || 'dark';
+            updateFilterButtonTheme(theme);
+
+            var themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function () {
+                    var newTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                    updateFilterButtonTheme(newTheme);
+                });
+            }
+
+            var langBtn = document.getElementById('lang-toggle');
+            if (langBtn) {
+                langBtn.addEventListener('click', function () {
+                    var newLang = document.documentElement.dataset.lang === 'en' ? 'nl' : 'en';
+                    syncFlag(newLang);
+                });
+            }
+        });
+    })();
+    </script>
+
             new MutationObserver(function () {
                 syncFlag(document.documentElement.dataset.lang || 'nl');
             }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
