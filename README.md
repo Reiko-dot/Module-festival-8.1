@@ -1,10 +1,10 @@
 ## Module festival 8.1 ❤️U Festival App
 Dit is een interactieve, mobiele festivalgids (Progressive Web App) die functioneert als het digitale programmaboekje voor de bezoekers van het ❤️U Festival.
 
-**In de basis doet deze app het volgende:**<br>
-**Programma tonen:** Bezoekers kunnen snel zien welke artiesten en acts er op de zaterdag en zondag optreden en hoe laat.<br>
-**Plattegrond aanbieden:** Er zit een interactieve kaart in waarmee bezoekers gemakkelijk hun weg kunnen vinden naar de verschillende podia en voorzieningen (zoals barren of toiletten) op het festivalterrein.<br>
-**Offline werken:** Eenmaal geopend via de QR-code, blijft de app ook zonder internetverbinding (4G/5G) op het festivalterrein volledig werken.
+* **In de basis doet deze app het volgende:**<br>
+* **Programma tonen:** Bezoekers kunnen snel zien welke artiesten en acts er op de zaterdag en zondag optreden en hoe laat.<br>
+* **Plattegrond aanbieden:** Er zit een interactieve kaart in waarmee bezoekers gemakkelijk hun weg kunnen vinden naar de verschillende podia en voorzieningen (zoals barren of toiletten) op het festivalterrein.<br>
+* **Offline werken:** Eenmaal geopend via de QR-code, blijft de app ook zonder internetverbinding (4G/5G) op het festivalterrein volledig werken.
 
 ## Project Structuur
 ```
@@ -31,7 +31,16 @@ MODULE-FESTIVAL-8.1/
 ```
 
 ## Planning - trello
-**Trello-bord link:**https://trello.com/b/v8jOhlv2/module-81
+**Trello-bord link:** https://trello.com/b/v8jOhlv2/module-81
+
+## Installeer de App
+Nu kun je je telefoon erbij pakken om de app daadwerkelijk te installeren:
+
+* **Stap 1:** Open de camera-app van je telefoon en richt deze op de QR-code op je computerscherm.
+* **Stap 2:** Tik op de melding/link die in je camerascherm verschijnt. Je telefoon opent nu de festivalwebsite.
+* **Stap 3:** Je krijgt nu een notificatie pop up dat zegt of je het wilt installeren, Druk nu op installeren.
+
+![U Festival QR Code](svg_files/qr-code.png)
 
 
 
@@ -131,4 +140,31 @@ MODULE-FESTIVAL-8.1/
 **Hulpzaamheid:** Werkt. QR code gegenereerd met de URL erin, bij scannen opent de pagina en vraagt het om installatie.<br>
 **Datum:** 27 mei 2026
 
+---
+
+**Prompt:** Can you add the filters about the stages in the schedule page? make them blue with a reset button.<br>
+**Model:** Gemini 3.1 pro<br>
+**Hulpzaamheid:** werkt wel maar ook niet. de buttons zien zichtbaar maar de padding is steeds te groot dat de schedule tabel zelf er niet in past in het scherm.<br>
+**Datum:** 4 juni 2026
+
 </details>
+
+
+## 🛠️ Techniek & Werkwijze
+
+### Gebruikte Technieken
+De app is gebouwd als een **Progressive Web App (PWA)**, waardoor hij super snel laadt en direct op een telefoon geïnstalleerd kan worden zonder app store. De kern bestaat uit:
+* **HTML5 & CSS3** – Voor een responsive layout die zich aanpast aan zowel mobiel als desktop.
+* **JavaScript** – Voor de interactieve functies zoals de navigatie, de vertalingen en het tonen van de data.
+* **Service Worker (`sw.js`)** – Zorgt voor de offline caching, zodat de app 100% blijft werken op het festivalterrein, zelfs zonder internetverbinding.
+* **Web App Manifest (`manifest.json`)** – Bevat de instellingen (zoals app-iconen en themakleuren) zodat je de app kunt installeren op je startscherm.
+
+### Werkwijze & AI-Assistentie
+Dit project is op een agile manier ontwikkeld in een kort tijdsbestek van 4 weken. Tijdens het programmeren is er gebruikgemaakt van **AI-pairing (Claude Sonnet 4.6)** om specifieke features efficiënt te bouwen en te debuggen. 
+
+Denk hierbij aan:
+* Het implementeren van de **Dark/Light mode** en de **Nederlands/Engels taalswitch**.
+* Het fixen van mobiele fullscreen layout- en scrollproblemen.
+* Het schrijven van de loops voor de dynamische schedule-tabel.
+* Het werkend krijgen van de **GPS-locatierechten** op de interactieve SVG-plattegrond.
+
