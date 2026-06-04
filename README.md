@@ -1,5 +1,12 @@
-## Module festival 8.1
+## Module festival 8.1 ❤️U Festival App
+Dit is een interactieve, mobiele festivalgids (Progressive Web App) die functioneert als het digitale programmaboekje voor de bezoekers van het ❤️U Festival.
 
+**In de basis doet deze app het volgende:**<br>
+**Programma tonen:** Bezoekers kunnen snel zien welke artiesten en acts er op de zaterdag en zondag optreden en hoe laat.<br>
+**Plattegrond aanbieden:** Er zit een interactieve kaart in waarmee bezoekers gemakkelijk hun weg kunnen vinden naar de verschillende podia en voorzieningen (zoals barren of toiletten) op het festivalterrein.<br>
+**Offline werken:** Eenmaal geopend via de QR-code, blijft de app ook zonder internetverbinding (4G/5G) op het festivalterrein volledig werken.
+
+## Project Structuur
 ```
 MODULE-FESTIVAL-8.1/
 ├── artist-images/                 # Artist profile photos and artwork
@@ -22,6 +29,11 @@ MODULE-FESTIVAL-8.1/
 ├── style.css                      # Global styling
 └── sw.js                          # Service worker (offline functionality)
 ```
+
+## Planning - trello
+**Trello-bord link:**https://trello.com/b/v8jOhlv2/module-81
+
+
 
 
 
