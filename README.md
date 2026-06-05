@@ -10,15 +10,18 @@ Dit is een interactieve, mobiele festivalgids (Progressive Web App) die function
 ```
 MODULE-FESTIVAL-8.1/
 ├── artist-images/                 # Artist profile photos and artwork
+├── beoordeling-criterium/         # beoordeling criterium folder met 2 bladen van evaluatie
+│   ├── beoordelen.png             # criteriumblad over applicatie en eindproduct
+│   └── beoordeling-2.png          # criteriumblad over code, kwaliteit, gitrepo, tests, demo en reflectie
 ├── database/                      # Data layer
-│   └── festival_artists.sql      # Artist database with festival info
+│   └── festival_artists.sql       # Artist database with festival info
 ├── icons/                         # PWA app icons
-│   ├── icon-192.png              # Icon for mobile home screen
-│   └── icon-512.png              # Large icon for splash screens
+│   ├── icon-192.png               # Icon for mobile home screen
+│   └── icon-512.png               # Large icon for splash screens
 ├── pages/                         # Multi-page app sections
-│   ├── info.html                 # Festival information & details
-│   ├── map.html                  # Venue map and location
-│   └── schedule.html             # Festival schedule & timeline
+│   ├── info.html                  # Festival information & details
+│   ├── map.html                   # Venue map and location
+│   └── schedule.html              # Festival schedule & timeline
 ├── svg_files/                     # Vector graphics and illustrations
 ├── app.js                         # Main application logic
 ├── artist.html                    # Individual artist detail page
