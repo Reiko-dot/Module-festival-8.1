@@ -22,6 +22,7 @@ MODULE-FESTIVAL-8.1/
 ├── svg_files/                     # Vector graphics and illustrations
 ├── app.js                         # Main application logic
 ├── artist.html                    # Individual artist detail page
+├── beoordelen.png                 # paper with feedback from students
 ├── index.html                     # Home page entry point
 ├── manifest.json                  # PWA manifest (offline support)
 ├── qr-install.html                # QR code for PWA installation
